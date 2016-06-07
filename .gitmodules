@@ -1,0 +1,9 @@
+[submodule "SFGUI"]
+	path = SFGUI
+	url = https://github.com/TankOs/SFGUI.git
+[submodule "SFML"]
+	path = SFML
+	url = https://github.com/SFML/SFML.git
+[submodule "tiled"]
+	path = tiled
+	url = https://github.com/bjorn/tiled.git
