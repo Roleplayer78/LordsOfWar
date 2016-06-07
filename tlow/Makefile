@@ -7,18 +7,19 @@
 ###############################################################################
 
 TARGET = tlow
-LIBS = -lstdc++
-#LINK = -pg
-CC = g++
-CFLAGS = -Wall -std=c++11 -pedantic -Werror -g
-#CFLAGS += -O2 -pg
-
-MODULE_INCLUDE = ../../SFML/include/SFML \
-                 ../../SFGUI/include/SFGUI \
-                 ../../lua/src
+CPP = g++
 
 SOURCE=./source
 INCLUDE=./include
+MODULE_INCLUDE = -I./include \
+                 -I../SFML/include \
+                 -I../SFGUI/include \
+                 -I../lua/src
+
+CPPFLAGS = $(MODULE_INCLUDE) -Wall -std=c++11 -pedantic -Werror -g
+#CPPFLAGS += -O2 -pg
+#LINK = -pg
+LIBS = -lstdc++ -L../SFML/lib -lsfml-window -lsfml-graphics -lsfml-system -L../SFGUI/lib -lsfgui
 
 .PHONY: default all clean help
 
@@ -29,17 +30,17 @@ help:
 	@echo "make - to compile spellcheck"
 	@echo "make clean - to remove objs and bin"
 
-OBJECTS = $(patsubst ${SOURCE}/%.cpp, $(SOURCE)/%.o, $(wildcard ${SOURCE}/*.cpp))
-HEADERS = $(wildcard ${INCLUDE}*.hpp)
+OBJECTS = $(patsubst $(SOURCE)/%.cpp, $(SOURCE)/%.o, $(wildcard $(SOURCE)/*.cpp))
+HEADERS = $(wildcard $(INCLUDE)*.hpp)
 
-%.o: %.c $(HEADERS)
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp $(HEADERS)
+	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 .PRECIOUS: $(TARGET) $(OBJECTS)
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -Wall $(LIBS) $(LINK) -o $@
+	$(CPP) $(OBJECTS) -Wall $(LIBS) $(LINK) -o $@
 
 clean:
-	-rm -f ${SOURCE}/*.o
+	-rm -f $(SOURCE)/*.o
 	-rm -f $(TARGET)
