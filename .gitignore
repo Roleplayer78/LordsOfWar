@@ -1,0 +1,8 @@
+*.a
+*.o
+*.os
+*.so
+/doc/html/
+lua
+luac
+tlow
