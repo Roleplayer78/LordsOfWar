@@ -34,6 +34,7 @@ case $1 in
         ;;
     tiled)
         cd $TILED_ROOT
+        qmake
         make
         ;;
     *)
@@ -50,7 +51,7 @@ case $1 in
 
         cd $PROJECT_ROOT
         if [ ! -h ./lua ]; then
-            ln -s "lua*" lua
+            ln -s lua* lua
         fi
         # Compile LUA
         cd $LUA_ROOT
