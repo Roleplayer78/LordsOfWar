@@ -8,7 +8,7 @@
 export PROJECT_ROOT=$PWD
 export SFML_ROOT=$PROJECT_ROOT/SFML
 export SFGUI_ROOT=$PROJECT_ROOT/SFGUI
-export LUA_ROOT=$PROJECT_ROOT/`ls -d lua*`
+export LUA_ROOT=$PROJECT_ROOT/lua
 export TILED_ROOT=$PROJECT_ROOT/tiled
 
 case $1 in
@@ -48,6 +48,10 @@ case $1 in
         cmake -G "Unix Makefiles"
         make
 
+        cd $PROJECT_ROOT
+        if [ ! -h ./lua ]; then
+            ln -s "lua*" lua
+        fi
         # Compile LUA
         cd $LUA_ROOT
         make linux
