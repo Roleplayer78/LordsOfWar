@@ -13,6 +13,10 @@ CC = g++
 CFLAGS = -Wall -std=c++11 -pedantic -Werror -g
 #CFLAGS += -O2 -pg
 
+MODULE_INCLUDE = ../../SFML/include/SFML \
+                 ../../SFGUI/include/SFGUI \
+                 ../../lua/src
+
 SOURCE=./source
 INCLUDE=./include
 
