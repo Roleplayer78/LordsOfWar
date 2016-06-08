@@ -16,10 +16,13 @@ case $1 in
         cd $SFML_ROOT/examples
         cmake -G "Unix Makefiles"
         make
+
         cd $SFGUI_ROOT/examples
         make
         ;;
     clean)
+        # This command will clean the Projects and bring it to a pushable
+        # state: remove even generated Makefiles etc.
         cd $SFML_ROOT
         git clean -xdf
 
@@ -49,11 +52,11 @@ case $1 in
         cmake -G "Unix Makefiles"
         make
 
+        # Compile LUA
         cd $PROJECT_ROOT
         if [ ! -h ./lua ]; then
             ln -s lua* lua
         fi
-        # Compile LUA
         cd $LUA_ROOT
         make linux
       
