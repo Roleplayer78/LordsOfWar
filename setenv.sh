@@ -10,6 +10,7 @@ export SFML_ROOT=$PROJECT_ROOT/SFML
 export SFGUI_ROOT=$PROJECT_ROOT/SFGUI
 export LUA_ROOT=$PROJECT_ROOT/lua
 export TILED_ROOT=$PROJECT_ROOT/tiled
+export DATA_ROOT=$PROJECT_ROOT/data
 
 case $1 in
     examples)
@@ -60,6 +61,8 @@ case $1 in
         cd $LUA_ROOT
         make linux
       
+        cd $DATA_ROOT
+        ./setdata.sh
         ;;
 esac
 
