@@ -39,6 +39,7 @@
 // Project includes
 #include "tlow_defs.hpp"
 #include "main_loop.hpp"
+#include "entity.hpp"
 
 int MainLoop::Run()
 {
