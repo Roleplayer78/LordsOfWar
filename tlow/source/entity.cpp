@@ -26,16 +26,15 @@
 
 #include "entity.hpp"
 
-template <typename T>
-Entity<T>::Entity() :
+Entity::Entity() :
     m_canBeDamaged(false),
     m_canBeDestroied(false),
     m_canMove(false),
     m_isPassable(true),
     m_isVisible(false),
-    posX(0),
-    posY(0),
-    posZ(0),
+    m_posX(0),
+    m_posY(0),
+    m_posZ(0),
     m_IconPath(NULL)
 {
     

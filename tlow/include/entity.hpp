@@ -36,15 +36,12 @@
 
 #include <string>
 /**
- * Template class entity
- * 
  * This class will hold all the basic operation that an entity can have.
  * All entity will share some basic parameters, be creatures, objects, environments
  * etc.
  * 
  */
 
-template <typename T>
 class Entity
 {
     public:
@@ -56,23 +53,23 @@ class Entity
         void SetDestroyStatus(bool status) { m_canBeDamaged = status; }
         bool GetDestroyStatus() { return m_canBeDamaged; }
         
-        void SetMoveStatus(bool status) { m_canBeDamaged = status; }
-        bool GetMoveStatus() { return m_canBeDamaged; }
+        void SetMoveStatus(bool status) { m_canMove = status; }
+        bool GetMoveStatus() { return m_canMove; }
         
-        void SetPassableStatus(bool status) { m_canBeDamaged = status; }
-        bool GetPassableStatus() { return m_canBeDamaged; }
+        void SetPassableStatus(bool status) { m_isPassable = status; }
+        bool GetPassableStatus() { return m_isPassable; }
         
-        void SetVisibleStatus(bool status) { m_canBeDamaged = status; }
-        bool GetVisibleStatus() { return m_canBeDamaged; }
+        void SetVisibleStatus(bool status) { m_isVisible = status; }
+        bool GetVisibleStatus() { return m_isVisible; }
         
-        void SetPosX(bool status) { m_canBeDamaged = status; }
-        bool GetPosX() { return m_canBeDamaged; }
+        void SetPosX(unsigned int posX) { m_posX = posX; }
+        bool GetPosX() { return m_posX; }
         
-        void SetPosY(bool status) { m_canBeDamaged = status; }
-        bool GetPosY() { return m_canBeDamaged; }
+        void SetPosY(unsigned int posY) { m_posY = posY; }
+        bool GetPosY() { return m_posY; }
         
-        void SetPosZ(bool status) { m_canBeDamaged = status; }
-        bool GetPosZ() { return m_canBeDamaged; }
+        void SetPosZ(char posZ) { m_posZ = posZ; }
+        bool GetPosZ() { return m_posZ; }
         
         void SetIconPath(char * path) 
         { 
@@ -80,15 +77,24 @@ class Entity
         }
         void GetIconPath(std::string & path) { path = m_IconPath; }
         
+        typedef enum
+        {
+            ENT_TERRAIN,
+            ENT_CREATURE,
+            ENT_OBJECT,
+        }EntityType;
+        
     private:
+        
         bool m_canBeDamaged;
         bool m_canBeDestroied;
         bool m_canMove;
         bool m_isPassable;
         bool m_isVisible;
-        unsigned int posX;  // 0,0 is the origin
-        unsigned int posY; // 0,0 is the origin
-        int posZ; // negative is below ground
+        bool m_isActive; // The Entity will act/react to the player
+        unsigned int m_posX;  // 0,0 is the origin
+        unsigned int m_posY; // 0,0 is the origin
+        char m_posZ; // negative is below ground. 0 is sea level/ground level
         std::string  m_IconPath; // Path to graphical resource
             
 };
