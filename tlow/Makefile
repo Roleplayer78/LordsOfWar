@@ -7,7 +7,7 @@
 ###############################################################################
 
 TARGET = tlow
-CPP = g++
+CPP = clang++
 
 SOURCE=./source
 INCLUDE=./include

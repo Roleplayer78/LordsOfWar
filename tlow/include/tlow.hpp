@@ -1,10 +1,14 @@
 #ifndef _TLOW_HPP
 #define _TLOW_HPP
 
+#include <SFGUI/SFGUI.hpp>
+
 // TODO make all this parameters
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 const char TITLE[] = "The Lords of War: The medieval fighting simulator";
+
+#define UNUSED_VAR(x) (void)x;
 
 class MainWindow
 {
