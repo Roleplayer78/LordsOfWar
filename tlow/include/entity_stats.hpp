@@ -82,10 +82,19 @@ typedef enum {
 typedef uint8_t     wound_days; // Days the wound is being healing
 typedef bool        infected;   // If the wound is infected
 
+/**
+ * Body locations
+ */
+typedef enum {
+    NO_LOCATION = 0,
+    WHOLE_LOCATION
+} eLocation;
+
 typedef struct {
     eWound      severity;   // Wound severity
     wound_days  days;       // Days the wound has been treated
     infected    infection;  // Is this wound actually an infection
+    eLocation   location;   // Location of the injury
 } sWound;
 
 
