@@ -45,41 +45,23 @@ UI::UI(std::shared_ptr<sfg::Desktop> desktop, const sf::Vector2u & render_size) 
     m_root_box = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 20.f);
     m_root_box->SetId("RootBox");
     
-    m_desktop->SetProperties(
-            ".Window {"
-            "	BackgroundColor: #BBBB0055;"
-            "   BorderColor: #000000FF;"
-            "   FontName: ../data/font.otf;"
-            "   BorderWidth: 1.0f;"
-            "ShadowAlpha: 30.0f;"
-            "ShadowAlpha: 2.0f;"
-            "}"
-            ".tlow {"
-            "	FontName: ../data/font.otf;"
-            "}"
-            "#pstats {"
-            "   BackgroundColor: #0000aa22;"
-            "}"
-            "#action > label{"
-            "   background-color: #aa0000;"
-            "}"
-            "#dice > label {"
-            "   background-color: #00aa00;"
-            "}"
-    );
+    m_desktop->LoadThemeFromFile("../data/tlow.ui");
     
+    // Create PStats window
     m_window1 = sfg::Window::Create(sfg::Window::Style::TITLEBAR | sfg::Window::Style::BACKGROUND);
     m_window1->SetClass("Window");
     m_window1->SetTitle("Player Stats");
     m_window1->SetPosition(sf::Vector2f(.0f, .0f));
     m_window1->SetRequisition(sf::Vector2f(m_render_size.x * PSTATS_W, m_render_size.y * PSTATS_H));
     
+    // Create the Action window
     m_window2 = sfg::Window::Create(sfg::Window::Style::TITLEBAR | sfg::Window::Style::BACKGROUND);
     m_window2->SetClass("Window");
     m_window2->SetTitle("Combat");
     m_window2->SetPosition(sf::Vector2f(m_render_size.x * PSTATS_W, .0f));
     m_window2->SetRequisition(sf::Vector2f(m_render_size.x * ACTION_W, m_render_size.y * ACTION_H));
     
+    // Create the Dice roller window
     m_window3 = sfg::Window::Create(sfg::Window::Style::TITLEBAR | sfg::Window::Style::BACKGROUND);
     m_window3->SetClass("Window");
     m_window3->SetTitle("Dice Roller");

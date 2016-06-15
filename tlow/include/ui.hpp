@@ -74,24 +74,24 @@
 const int TAB_H = 15.0f; // Height of tabs. Generic
 
 // Stats section
-const float PSTATS_W = .30f;
+const float PSTATS_W = .40f;
 const float PSTATS_H = 1.f;
 
 
 // Action section
-const float ACTION_W = .70f;
+const float ACTION_W = .60f;
 const float ACTION_H = .70f;
-const float PACTION_W = .40f;
+const float PACTION_W = .35f;
 const float PACTION_H = .30f;
-const float EACTION_W = .30f;
+const float EACTION_W = .25f;
 const float EACTION_H = .70f;
 
 // Dice section
-const float DICE_W = .70f;
+const float DICE_W = .60f;
 const float DICE_H = .30f;
-const float PDICE_W = .40f;
+const float PDICE_W = .35f;
 const float PDICE_H = .30f;
-const float EDICE_W = .30f;
+const float EDICE_W = .25f;
 const float EDICE_H = .30f;
 
 class UI
