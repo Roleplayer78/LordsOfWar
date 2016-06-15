@@ -40,9 +40,20 @@
 #include "tlow_defs.hpp"
 #include "main_loop.hpp"
 #include "entity.hpp"
+#include "ui.hpp"
+
+void MainLoop::CreateLayout()
+{
+    m_UserInterface->CreateStatsSection();
+    m_UserInterface->CreateActionSection();
+    m_UserInterface->CreateDiceSection();
+}
 
 int MainLoop::Run()
 {
+    // Setting up user interface
+    CreateLayout();
+
     // Start the game loop
     while ( m_render->isOpen() ) {
             // Process events
@@ -52,7 +63,7 @@ int MainLoop::Run()
                     // Every frame we have to send SFML events to the window
                     // to enable user interactivity. Without doing this your
                     // GUI is nothing but a big colorful picture ;)
-                    m_root_window->HandleEvent( event );
+                    m_desktop->HandleEvent( event );
 
                     // Close window : exit
                     if ( event.type == sf::Event::Closed ) {
@@ -62,7 +73,7 @@ int MainLoop::Run()
 
             // Update the GUI, note that you shouldn't normally
             // pass 0 seconds to the update method.
-            m_root_window->Update( 0.f );
+            m_desktop->Update( 0.01f );
 
             // Clear screen
             m_render->clear();

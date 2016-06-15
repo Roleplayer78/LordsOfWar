@@ -22,7 +22,7 @@ int main (int argc, char *argv[])
     
     if (window.Init(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE) != NULL)
     {
-        MainLoop ml(window.GetRender(), window.GetWindow(), window.GetGui());
+        MainLoop ml(window.GetRender(), window.GetGui());
         ml.Run();
     }
 
@@ -64,18 +64,5 @@ void MainWindow::CreateWindow()
 
 	// Create an SFGUI. This is required before doing anything with SFGUI.
 	m_sfgui = new sfg::SFGUI;
-
-	// Create our main SFGUI window
-
-	// Almost everything in SFGUI is handled through smart pointers
-	// for automatic resource management purposes. You create them
-	// and they will automatically be destroyed when the time comes.
-
-	// Creation of widgets is always done with it's Create() method
-	// which will return a smart pointer owning the new widget.
-	m_window = sfg::Window::Create(sfg::Window::BACKGROUND);
-
-	// Here we can set the window's title bar text.
-	m_window->SetTitle( "A really really really really long title" );
     }
 }

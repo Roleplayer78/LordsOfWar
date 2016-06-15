@@ -24,45 +24,33 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
- * File:   main_loop.hpp
- * Author: broken
- *
- * Created on 07 June 2016, 22:33
- */
+#ifndef CREATURE_HPP
+#define CREATURE_HPP
 
-#ifndef MAIN_LOOP_HPP
-#define MAIN_LOOP_HPP
+#include <list>
+#include <string>
+#include <unordered_map>
 
-#include "ui.hpp"
+#include "entity_stats.hpp"
+#include "entity.hpp"
 
-class MainLoop
-{
-public:
-    MainLoop(sf::RenderWindow *render, sfg::SFGUI * sfgui) :
-        m_render(NULL), m_desktop(), m_sfgui(NULL)
-    {
-        m_render = render;
-        m_sfgui = sfgui;
-        m_desktop = std::make_shared<sfg::Desktop>();
-        
-        m_UserInterface = new UI(m_desktop, render->getSize());
-    };
+
     
-    // Start the game main loop
-    int Run();
+class Creature : Entity {
+
+public:
+    Creature (const std::string name);
     
 private:
+    std::string m_name; // Name of the creature
+    std::unordered_map<std::uint16_t, std::string> stats_base;
+    std::unordered_map<std::uint16_t, std::string> skills_base;
     
-    void CreateLayout();
+    std::list<sWound> wounds;
+    std::list<std::uint16_t> fatigue; // Fatigue levels (1, 2, 3, ecc)
     
-    sf::RenderWindow * m_render;
-    std::shared_ptr<sfg::Desktop> m_desktop;
-    sfg::SFGUI * m_sfgui;
     
-    UI *m_UserInterface;
     
 };
 
-#endif /* MAIN_LOOP_HPP */
-
+#endif // CREATURE_HPP

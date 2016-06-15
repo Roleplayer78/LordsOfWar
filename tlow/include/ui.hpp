@@ -64,41 +64,59 @@
 
 #ifndef UI_HPP
 #define UI_HPP
-
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <SFGUI/Box.hpp>
 #include <SFGUI/Notebook.hpp>
+#include <SFGUI/Desktop.hpp>
+#include <SFGUI/Table.hpp>
 
 const int TAB_H = 15.0f; // Height of tabs. Generic
 
 // Stats section
-const float PSTATS_W = 30.0f;
-const float PSTATS_H = 100.0f;
+const float PSTATS_W = .30f;
+const float PSTATS_H = 1.f;
 
 
 // Action section
-const float ACTION_W = 40.0f;
-const float ACTION_H = 70.0f;
-const float PACTION_W = 40.0f;
-const float PACTION_H = 30.0f;
-const float EACTION_W = 30.0f;
-const float EACTION_H = 70.0f;
+const float ACTION_W = .70f;
+const float ACTION_H = .70f;
+const float PACTION_W = .40f;
+const float PACTION_H = .30f;
+const float EACTION_W = .30f;
+const float EACTION_H = .70f;
 
 // Dice section
-const float DICE_W = 40.0f;
-const float DICE_H = 30.0f;
-const float PDICE_W = 40.0f;
-const float PDICE_H = 30.0f;
-const float EDICE_W = 30.0f;
-const float EDICE_H = 30.0f;
+const float DICE_W = .70f;
+const float DICE_H = .30f;
+const float PDICE_W = .40f;
+const float PDICE_H = .30f;
+const float EDICE_W = .30f;
+const float EDICE_H = .30f;
 
 class UI
 {
 public:
+    UI(std::shared_ptr<sfg::Desktop> desktop, const sf::Vector2u & render_size);
     
+    void CreateStatsSection();
+    void CreateActionSection();
+    void CreateDiceSection();
     
 private:
+    sf::Vector2u m_render_size;
+    sfg::Box::Ptr m_root_box;
     
-    std::shared_ptr<sfg::Notebook> PStats; // Player STATS area
+    sfg::Window::Ptr m_window1;
+    sfg::Window::Ptr m_window2;
+    sfg::Window::Ptr m_window3;
     
+    sfg::Notebook::Ptr m_pstats_notebook; // Player STATS area
+    
+    sfg::Table::Ptr m_action_table;
+    sfg::Table::Ptr m_dice_table;
+   
+    std::shared_ptr<sfg::Desktop> m_desktop;
 };
 
 

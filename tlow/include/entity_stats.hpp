@@ -25,44 +25,70 @@
  */
 
 /* 
- * File:   main_loop.hpp
+ * File:   entity_stats.hpp
  * Author: broken
  *
- * Created on 07 June 2016, 22:33
+ * Created on 15 June 2016, 11:04
  */
 
-#ifndef MAIN_LOOP_HPP
-#define MAIN_LOOP_HPP
+#ifndef ENTITY_STATS_HPP
+#define ENTITY_STATS_HPP
 
-#include "ui.hpp"
 
-class MainLoop
-{
-public:
-    MainLoop(sf::RenderWindow *render, sfg::SFGUI * sfgui) :
-        m_render(NULL), m_desktop(), m_sfgui(NULL)
-    {
-        m_render = render;
-        m_sfgui = sfgui;
-        m_desktop = std::make_shared<sfg::Desktop>();
-        
-        m_UserInterface = new UI(m_desktop, render->getSize());
-    };
-    
-    // Start the game main loop
-    int Run();
-    
-private:
-    
-    void CreateLayout();
-    
-    sf::RenderWindow * m_render;
-    std::shared_ptr<sfg::Desktop> m_desktop;
-    sfg::SFGUI * m_sfgui;
-    
-    UI *m_UserInterface;
-    
-};
+/**
+ * Creature physical and mental attributes (statistics)
+ */
+typedef enum {
+    COMELINESS_STAT = 0,
+    STRENGTH_STAT,
+    STAMINA_STAT,
+    DEXTERITY_STAT,
+    AGILITY_STAT,
+    EYESIGHT_STAT,
+    HEARING_STAT,
+    SMELL_STAT,
+    VOICE_STAT,
+    INTELLIGENCE_STAT,
+    AURA_STAT,
+    WILL_STAT,
+    MORALITY_STAT,
+    PIETY_STAT,
+    INVALID_STAT
+} eStats;
 
-#endif /* MAIN_LOOP_HPP */
+/**
+ * Creature physical and mental skills (trainable or innate)
+ */
+typedef enum {
+    // Combat skills
+    INITIATIVE_SKILL = 0,
+    SWORD_SKILL,
+    UNARMED_SKILL,
+    INVALID_SKILL        
+} eSkills;
+
+/**
+ * Type and level of wounds
+ */
+typedef enum {
+    NO_WOUND = 0,
+    MINOR_1_WOUND,
+    MODERATE_2_WOUND,
+    SERIOUS_3_WOUND,
+    GRIEVOUS_4_WOUND,
+    KILLING_WOUND
+} eWound;
+
+typedef uint8_t     wound_days; // Days the wound is being healing
+typedef bool        infected;   // If the wound is infected
+
+typedef struct {
+    eWound      severity;   // Wound severity
+    wound_days  days;       // Days the wound has been treated
+    infected    infection;  // Is this wound actually an infection
+} sWound;
+
+
+
+#endif /* ENTITY_STATS_HPP */
 

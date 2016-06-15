@@ -24,45 +24,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
- * File:   main_loop.hpp
- * Author: broken
- *
- * Created on 07 June 2016, 22:33
- */
+#include "creature.hpp"
 
-#ifndef MAIN_LOOP_HPP
-#define MAIN_LOOP_HPP
-
-#include "ui.hpp"
-
-class MainLoop
+Creature::Creature(const std::string name) :
+m_name("Unknown")
 {
-public:
-    MainLoop(sf::RenderWindow *render, sfg::SFGUI * sfgui) :
-        m_render(NULL), m_desktop(), m_sfgui(NULL)
-    {
-        m_render = render;
-        m_sfgui = sfgui;
-        m_desktop = std::make_shared<sfg::Desktop>();
-        
-        m_UserInterface = new UI(m_desktop, render->getSize());
-    };
-    
-    // Start the game main loop
-    int Run();
-    
-private:
-    
-    void CreateLayout();
-    
-    sf::RenderWindow * m_render;
-    std::shared_ptr<sfg::Desktop> m_desktop;
-    sfg::SFGUI * m_sfgui;
-    
-    UI *m_UserInterface;
-    
-};
-
-#endif /* MAIN_LOOP_HPP */
-
+    m_name = name;
+}

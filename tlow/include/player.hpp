@@ -25,44 +25,29 @@
  */
 
 /* 
- * File:   main_loop.hpp
+ * File:   player.hpp
  * Author: broken
  *
- * Created on 07 June 2016, 22:33
+ * Created on 15 June 2016, 13:19
  */
 
-#ifndef MAIN_LOOP_HPP
-#define MAIN_LOOP_HPP
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-#include "ui.hpp"
+#include "creature.hpp"
 
-class MainLoop
-{
-public:
-    MainLoop(sf::RenderWindow *render, sfg::SFGUI * sfgui) :
-        m_render(NULL), m_desktop(), m_sfgui(NULL)
-    {
-        m_render = render;
-        m_sfgui = sfgui;
-        m_desktop = std::make_shared<sfg::Desktop>();
+class Player : Creature {
+    public:
+        Player(char * filePath);
+        Player();
         
-        m_UserInterface = new UI(m_desktop, render->getSize());
-    };
-    
-    // Start the game main loop
-    int Run();
-    
-private:
-    
-    void CreateLayout();
-    
-    sf::RenderWindow * m_render;
-    std::shared_ptr<sfg::Desktop> m_desktop;
-    sfg::SFGUI * m_sfgui;
-    
-    UI *m_UserInterface;
+    private:
+        
+            
     
 };
 
-#endif /* MAIN_LOOP_HPP */
+
+
+#endif /* PLAYER_HPP */
 
