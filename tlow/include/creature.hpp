@@ -24,14 +24,22 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+/* 
+ * File:   entity_stats.hpp
+ * Author: broken
+ *
+ * Created on 15 June 2016, 11:04
+ */
 #ifndef CREATURE_HPP
 #define CREATURE_HPP
 
 #include <list>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include "entity_stats.hpp"
+#include "effect.hpp"
 #include "entity.hpp"
 
 
@@ -43,11 +51,11 @@ public:
     
 private:
     std::string m_name; // Name of the creature
-    std::unordered_map<std::uint16_t, std::string> stats_base;
-    std::unordered_map<std::uint16_t, std::string> skills_base;
+    std::unordered_map<std::uint16_t, sStat> stats;
+    std::unordered_map<std::uint16_t, sSkill> skills;
     
-    std::list<sWound> wounds;
-    std::list<std::uint16_t> fatigue; // Fatigue levels (1, 2, 3, ecc)
+    std::vector<sWound> wounds;
+    std::vector<std::uint16_t> fatigue; // Fatigue levels (1, 2, 3, ecc)
     
     
     

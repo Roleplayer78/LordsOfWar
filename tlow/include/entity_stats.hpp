@@ -34,7 +34,6 @@
 #ifndef ENTITY_STATS_HPP
 #define ENTITY_STATS_HPP
 
-
 /**
  * Creature physical and mental attributes (statistics)
  */
@@ -56,6 +55,11 @@ typedef enum {
     INVALID_STAT
 } eStats;
 
+typedef struct {
+	std::string		name;	// Name of the stat
+	std::uint16_t	value;	// Current, base value of the stat
+	std::string		path;	// Path to icon
+} sStat;
 /**
  * Creature physical and mental skills (trainable or innate)
  */
@@ -64,8 +68,20 @@ typedef enum {
     INITIATIVE_SKILL = 0,
     SWORD_SKILL,
     UNARMED_SKILL,
+    DODGE,
+    ENDURANCE_SKILL,	// This is only used for SB
     INVALID_SKILL        
 } eSkills;
+
+typedef struct {
+	std::string		name;		// Name of the skill
+	std::uint16_t 	mastery;	// Mastery level of the skill (05%-100+%)
+	eStats			stat1;		// 1st stat for computing SB
+	eStats			stat2;		// 2nd stat for computing SB
+	eStats			stat3;		// 3rd stat for computing SB
+	std::uint16_t	learn_rool;	// Learn roll gained and still unused
+	std::string		path;		// Path to icon
+} sSkill;
 
 /**
  * Type and level of wounds
@@ -86,16 +102,41 @@ typedef bool        infected;   // If the wound is infected
  * Body locations
  */
 typedef enum {
-    NO_LOCATION = 0,
-    WHOLE_LOCATION
+    SKILL_LOC,
+    FACE_LOC,
+    NECK_LOC,
+    SHOULDER_SX_LOC,
+    SHOULDER_DX_LOC,
+    UPPER_ARM_SX_LOC,
+    UPPER_ARM_DX_LOC,
+    ELBOW_SX_LOC,
+    ELBOW_DX_LOC,
+    FOREARM_SX_LOC,
+    FOREARM_DX_LOC,
+    HAND_SX_LOC,
+    HAND_DX_LOC,
+    THORAX_LOC,
+    ABDOMEN_LOC,
+    HIP_LOC,
+    GROIN_LOC,
+    THIGH_SX_LOC,
+    THIGH_DX_LOC,
+    KNEE_SX_LOC,
+    KNEE_DX_LOC,
+    CALF_SX_LOC,
+    CALF_DX_LOC,
+    FOOT_SX_LOC,
+    FOOT_DX_LOC,
+    ALL_LOC
 } eLocation;
 
 typedef struct {
-    eWound      severity;   // Wound severity
+    eWound      level;   // Wound severity
     wound_days  days;       // Days the wound has been treated
     infected    infection;  // Is this wound actually an infection
     eLocation   location;   // Location of the injury
 } sWound;
+
 
 
 

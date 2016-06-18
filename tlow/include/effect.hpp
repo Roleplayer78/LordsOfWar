@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2016, broken
  * All rights reserved.
@@ -24,31 +25,33 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "tlow.hpp"
+/* 
+ * File:   entity_stats.hpp
+ * Author: broken
+ *
+ * Created on 15 June 2016, 11:04
+ */
+
+ #ifndef EFFECT_HPP
+ #define EFFECT_HPP
+
 #include "entity.hpp"
 
-Entity::Entity() :
-	m_type(EntityType::TERRAIN_ENT),
-    m_canBeDamaged(false),
-    m_canBeDestroied(false),
-    m_canMove(false),
-    m_isPassable(true),
-    m_isVisible(false),
-    m_isActive(true),
-    m_posX(0),
-    m_posY(0),
-    m_posZ(0),
-    m_IconPath(NULL)
-{
-	UNUSED_VAR(m_type)
-	UNUSED_VAR(m_canBeDamaged)
-	UNUSED_VAR(m_canBeDestroied)
-	UNUSED_VAR(m_canMove)
-	UNUSED_VAR(m_isPassable)
-	UNUSED_VAR(m_isVisible)
-	UNUSED_VAR(m_isActive)
-	UNUSED_VAR(m_posX)
-	UNUSED_VAR(m_posY)
-	UNUSED_VAR(m_posZ)
-	UNUSED_VAR(m_IconPath)
-}
+class Effect : Entity {
+
+public:
+	typedef enum {
+		SPELL_EFFECT = 0,
+		DISEASE_EFFECT,
+		ENVIRONMENTAL_EFFECT,
+		UNKNOWN_EFFECT
+	} eEffectType;
+
+	Effect();
+
+private:
+	uint16_t m_speed; // How fast the entity move (squares/hexes/whatever)
+
+};
+
+ #endif // EFFECT_HPP

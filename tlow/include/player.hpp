@@ -34,16 +34,17 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
+#include "tlow_defs.hpp"
 #include "creature.hpp"
 
 class Player : Creature {
     public:
-        Player(char * filePath);
-        Player();
+        Player(const char * icon_path);
         
     private:
         
-            
+        std::string m_icon_path;
+        std::string m_name;
     
 };
 

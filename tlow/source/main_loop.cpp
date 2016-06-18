@@ -93,5 +93,5 @@ int MainLoop::Run()
             m_render->display();
     }
     
-    return tlow::STATUS_EXIT;
+    return STATUS_EXIT;
 }

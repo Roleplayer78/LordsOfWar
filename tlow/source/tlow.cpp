@@ -26,7 +26,7 @@ int main (int argc, char *argv[])
         ml.Run();
     }
 
-    exit (tlow::SUCCESS);
+    exit (SUCCESS);
 }
 
 sf::RenderWindow * MainWindow::Init(const int screen_width, const int screen_height,

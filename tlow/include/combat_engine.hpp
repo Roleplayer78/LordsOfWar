@@ -24,31 +24,75 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "tlow.hpp"
-#include "entity.hpp"
+/* 
+ * File:   entity_stats.hpp
+ * Author: broken
+ *
+ * Created on 15 June 2016, 11:04
+ */
 
-Entity::Entity() :
-	m_type(EntityType::TERRAIN_ENT),
-    m_canBeDamaged(false),
-    m_canBeDestroied(false),
-    m_canMove(false),
-    m_isPassable(true),
-    m_isVisible(false),
-    m_isActive(true),
-    m_posX(0),
-    m_posY(0),
-    m_posZ(0),
-    m_IconPath(NULL)
-{
-	UNUSED_VAR(m_type)
-	UNUSED_VAR(m_canBeDamaged)
-	UNUSED_VAR(m_canBeDestroied)
-	UNUSED_VAR(m_canMove)
-	UNUSED_VAR(m_isPassable)
-	UNUSED_VAR(m_isVisible)
-	UNUSED_VAR(m_isActive)
-	UNUSED_VAR(m_posX)
-	UNUSED_VAR(m_posY)
-	UNUSED_VAR(m_posZ)
-	UNUSED_VAR(m_IconPath)
-}
+#ifndef COMBAT_ENGINE_HPP
+#define COMBAT_ENGINE_HPP
+
+#include "creature.hpp"
+
+/**
+ *	CombatEngine
+ *
+ *  This singleton class is responsible for carry on all the combat
+ *  needs
+ */
+class CombatEngine {
+
+public:
+
+	typedef enum
+	{
+		IGNORE_DEF,
+		DODGE_DEF,
+		PARRY_DEF,
+		BLOCK_DEF,
+		INVALID_DEF
+	} eDefence;
+
+	typedef enum
+	{
+		MELEE_ATT,
+		RANGED_ATT,
+		GRAPPLE_ATT,
+		PRESS_ATT
+	} eAttack;
+
+	typedef enum
+	{
+		A1DICE,
+		A2DICE,
+		A3DICE,
+		D1DICE,
+		D2DICE,
+		D3DICE,
+		
+	}eResult;
+
+	static CombatEngine * getCombatEngine()
+	{
+		if (m_this == NULL)
+		{
+			m_this = new CombatEngine();
+		}
+
+		return m_this;
+	}
+
+	int ResolveAttack(Creature &attacker, Creature &defender,
+			eAttack attack, eDefence defence,
+			std::uint16_t attacker_num, Effect &effect);
+
+private:
+	// Private construtor: the CombatEngine is never directly instantiated
+	CombatEngine();
+
+	// Singleton pointer
+	static CombatEngine *m_this;
+};
+#endif // COMBAT_ENGINE_HPP

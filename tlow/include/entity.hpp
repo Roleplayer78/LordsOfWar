@@ -79,13 +79,17 @@ class Entity
         
         typedef enum
         {
-            ENT_TERRAIN,
-            ENT_CREATURE,
-            ENT_OBJECT,
-        }EntityType;
+            TERRAIN_ENT = 0,
+            CREATURE_ENT,
+            OBJECT_ENT,
+            TRAP_ENT,
+            EFFECT_ENT,
+            WRONG_ENT
+        } EntityType;
         
     private:
-        
+
+        EntityType m_type;
         bool m_canBeDamaged;
         bool m_canBeDestroied;
         bool m_canMove;
@@ -96,6 +100,7 @@ class Entity
         unsigned int m_posY; // 0,0 is the origin
         char m_posZ; // negative is below ground. 0 is sea level/ground level
         std::string  m_IconPath; // Path to graphical resource
+
             
 };
 

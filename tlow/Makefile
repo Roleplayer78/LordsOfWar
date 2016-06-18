@@ -8,6 +8,7 @@
 
 TARGET = tlow
 CPP = clang++
+LD=clang++
 
 SOURCE=./source
 INCLUDE=./include
@@ -22,7 +23,7 @@ CPPFLAGS = $(MODULE_INCLUDE) -Wall -std=c++11 -pedantic -Werror -g
 
 LIBS = -lstdc++ \
 	-L../SFML/lib -lsfml-window -lsfml-graphics -lsfml-system \
-        -L../SFGUI/lib -lsfgui
+        -L../SFGUI/lib -lsfgui -L ../lua/src -llua
 
 .PHONY: default all clean help depend
 .PRECIOUS: $(TARGET) $(OBJECTS)
@@ -42,7 +43,7 @@ SOURCES = $(wildcard $(SOURCE)/*.cpp)
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 $(TARGET): $(OBJECTS)
-	$(CPP) $(OBJECTS) -Wall $(LIBS) $(LINK) -o $@
+	$(LD) $(OBJECTS) -Wall $(LIBS) $(LINK) -o $@
 
 clean:
 	-rm -f $(SOURCE)/*.o

@@ -34,21 +34,24 @@
 #ifndef TLOW_DEFS_HPP
 #define TLOW_DEFS_HPP
 
-namespace tlow
-{
-    // Inner game status
-    typedef enum {
-        STATUS_INIT = 0,    // Game is starting, allocating resources
-        STATUS_RUNNING,     // Game is running. Clock ticking, ecc.
-        STATUS_PAUSE,       // Game is in... well, pause. Nothing can happen
-        STATUS_EXIT         // Game is closing. Exiting.ssss
-    } GameStatus;
-    
-    typedef enum {
-        SUCCESS = 0,
-        FAIL
-    } ExitCodes;
-}
+// Path to game resouces: icons, fonts, images, ecc.
+#define DATA_PATH "../data"
+// Configuration file for tlow
+#define CONFIG_FILE "../data/tlow.conf"
+
+// Inner game status
+typedef enum {
+	STATUS_INIT = 0,    // Game is starting, allocating resources
+	STATUS_RUNNING,     // Game is running. Clock ticking, ecc.
+	STATUS_PAUSE,       // Game is in... well, pause. Nothing can happen
+	STATUS_EXIT         // Game is closing. Exiting.ssss
+} GameStatus;
+
+typedef enum {
+	SUCCESS = 0,
+	FAIL
+} ExitCodes;
+
 
 
 #endif /* TLOW_DEFS_HPP */

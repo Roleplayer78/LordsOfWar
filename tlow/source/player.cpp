@@ -26,8 +26,10 @@
 
 #include "player.hpp"
 
-Player::Player() :
-    Creature("Player")
+Player::Player(const char * icon_path) :
+    Creature("Player"),
+    m_icon_path(DATA_PATH"/icon/player.png"),
+    m_name(NULL)
 {
     
 }
