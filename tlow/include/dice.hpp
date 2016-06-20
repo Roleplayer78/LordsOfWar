@@ -34,6 +34,9 @@
 #ifndef DICE_HPP
 #define DICE_HPP
 
+#include <string>
+#include "tlow_defs.hpp"
+
 class Dice {
 
 public:
@@ -44,7 +47,7 @@ public:
 		D3,
 		D4,
 		D6,
-		D8
+		D8,
 		D10,
 		D12,
 		D20,
@@ -55,12 +58,12 @@ public:
 
 	Dice();
 
-	std::uint16_t Roll(std::uint16_t dice_num, eDiceType die,  );
+	std::uint16_t Roll(std::uint16_t dice_num, eDiceType die);
 
 
 private:
 
-}
+};
 
 
 
