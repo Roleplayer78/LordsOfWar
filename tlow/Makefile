@@ -36,6 +36,7 @@ help:
 	@echo "make clean - to remove objs and bin"
 
 OBJECTS = $(patsubst $(SOURCE)/%.cpp, $(SOURCE)/%.o, $(wildcard $(SOURCE)/*.cpp))
+DEPENDS = $(patsubst $(SOURCE)/%.cpp, $(SOURCE)/%.d, $(wildcard $(SOURCE)/*.cpp))
 HEADERS = $(wildcard $(INCLUDE)/*.hpp)
 SOURCES = $(wildcard $(SOURCE)/*.cpp)
 
@@ -45,15 +46,17 @@ SOURCES = $(wildcard $(SOURCE)/*.cpp)
 $(TARGET): $(OBJECTS)
 	$(LD) $(OBJECTS) -Wall $(LIBS) $(LINK) -o $@
 
+-include $(DEPENDS)
+
 clean:
 	-rm -f $(SOURCE)/*.o
 	-rm -f $(TARGET)
-	-rm -f .depend
+	-rm -r $(SOURCE)/*.d
 	
-depend: .depend
+depend: $(DEPENDS)
 	
-.depend: $(SOURCES)
-	@rm -f ./.depend
-	$(CPP) $(CPPFLAGS) -MM $^ -MF $@
+#%.d: %.cpp
+#	$(CPP) $(CPPFLAGS) -MM -MT $(@:.d=.o) >$@
 
--include .depend
+
+
