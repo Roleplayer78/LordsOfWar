@@ -45,13 +45,6 @@ const std::uint16_t STAT_LEVEL = 1; // This injuries and fatigue levels when rol
 const std::uint16_t SKILL_LEVEL = 5; 	// Each level of Injury / Fatigue is multiplied by this - 5%
 							// This must be in accordance to the SKILL DIE 1d100
 
-const std::uint16_t SKILL_DIE_SIZE = 100; // This means : 100 = 1d100 / 20 = 1d20
-const std::uint16_t SKILL_DICE = 1; // How many time a SKILL DIE is rolled
-
-
-const std::uint16_t STAT_DIE_SIZE = 6; // This means : 6 = 1d6 / 8 = 1d8 / etc
-const std::uint16_t STAT_DICE = 3; // How many time a STAT DIE is rolled
-
 const std::uint16_t MAX_SKILL = 100; // Max skill is SB + MAX_SKILL. This is computed runtime
 
 const std::uint16_t CRITICAL_ROLL = 5;	// This means tha every roll divisible
@@ -59,9 +52,32 @@ const std::uint16_t CRITICAL_ROLL = 5;	// This means tha every roll divisible
 										// If => to SML is a critical success
 										// if <= to SML is a critical failure
 
-
 // This simple function will check if the roll is a critical success or not:
 // If the roll is divisible by CRITICAL_ROLL is critical (success/failure) otherwise not
 const inline bool is_critical (std::uint16_t roll) { if ( !(roll % CRITICAL_ROLL)) return true; else return false; }
+
+typedef enum
+{
+	D2,
+	D3,
+	D4,
+	D6,
+	D8,
+	D10,
+	D12,
+	D20,
+	D30,
+	D100,
+	D_NONE
+} eDiceType;
+
+typedef enum
+{
+	CF_RESULT = 0,	// Critical Failure
+	MF_RESULT,		// Medium Failure
+	MS_RESULT,		// Medium Success
+	CS_RESULT,		// Critical Success
+	UNKNOWN_RESULT
+} eResultType;
 
 #endif // ENGINE_DEFS_HPP

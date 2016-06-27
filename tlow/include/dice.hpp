@@ -35,33 +35,23 @@
 #define DICE_HPP
 
 #include <string>
+#include <cstdlib>
 #include "tlow_defs.hpp"
+#include "creature.hpp"
 
 class Dice {
 
 public:
 
-	typedef enum
-	{
-		D2,
-		D3,
-		D4,
-		D6,
-		D8,
-		D10,
-		D12,
-		D20,
-		D30,
-		D100,
-		D_NONE
-	} eDiceType;
-
 	Dice();
 
-	std::uint16_t Roll(std::uint16_t dice_num, eDiceType die);
-
+	eResultType SkillRoll(eDiceType die, std::uint16_t num_dice, eSkills skill, Creature & creature);
+	eResultType StatRoll(eDiceType die, std::uint16_t num_dice, Creature & creature);
 
 private:
+
+	std::uint16_t Roll(eDiceType die, std::uint16_t num_dice);
+	std::uint16_t RollResult(std::uint16_t num_dice, eDiceType die, Creature *creature);
 
 };
 

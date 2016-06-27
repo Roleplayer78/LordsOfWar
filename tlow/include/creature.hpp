@@ -48,10 +48,14 @@ class Creature : Entity {
 
 public:
     Creature (const std::string name);
+
+    std::uint16_t GetSkill(eSkills skill);
     
 private:
     std::string m_name; // Name of the creature
-    std::unordered_map<std::uint16_t, sStat> stats;
+    // 1st = eStat enum , 2nd Stat value
+    std::unordered_map<std::uint16_t, std::uint16_t> stats;
+    // 1st = eSkill enum , 2nd sSkills structure
     std::unordered_map<std::uint16_t, sSkill> skills;
     
     std::vector<sWound> wounds;

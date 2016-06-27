@@ -4,8 +4,8 @@
 #include <SFGUI/SFGUI.hpp>
 
 // TODO make all this parameters
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 768;
 const char TITLE[] = "The Lords of War: The medieval fighting simulator";
 
 #define UNUSED_VAR(x) (void)x;

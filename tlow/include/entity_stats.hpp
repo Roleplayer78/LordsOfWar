@@ -73,7 +73,12 @@ typedef enum {
     INVALID_SKILL        
 } eSkills;
 
-typedef struct {
+typedef struct _sSkill{
+	_sSkill(std::string name_c, std::uint16_t sml)
+	{
+		name = name_c;
+		mastery = sml;
+	}
 	std::string		name;		// Name of the skill
 	std::uint16_t 	mastery;	// Mastery level of the skill (05%-100+%)
 	eStats			stat1;		// 1st stat for computing SB
