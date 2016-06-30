@@ -31,20 +31,22 @@ m_name("Unknown")
 {
     m_name = name;
 
-	// Mock up initialization
-    for (int i = 0; i < eSkills::INVALID_SKILL; i++)
-    {
-		skills.insert(std::pair<std::uint16_t,sSkill>(i, sSkill("Test", 50)));
-	}
+    InitializeSkillTable();
 
-    for (int i = 0; i < eStats::INVALID_STAT; i++)
+    // Skill table initialization
+    for (int i = 0; i < eSkills::UNKNOWN_SKILL; i++)
     {
-		stats.insert(std::pair<std::uint16_t,std::uint16_t>(i, 12));
-	}
+        skills.insert(std::pair<std::uint16_t,sSkill>(i, sSkill(50)));
+    }
+
+    for (int i = 0; i < eStats::UNKNOWN_STAT; i++)
+    {
+        stats.insert(std::pair<std::uint16_t,std::uint16_t>(i, 12));
+    }
 }
 
 std::uint16_t Creature::GetSkill(eSkills skill)
 {
-	// Return the value of requested skill
-	return skills.find(skill)->second.mastery;
+    // Return the value of requested skill
+    return skills.find(skill)->second.mastery;
 }

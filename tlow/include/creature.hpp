@@ -25,7 +25,7 @@
  */
 
 /* 
- * File:   entity_stats.hpp
+ * File:   creature_stats.hpp
  * Author: broken
  *
  * Created on 15 June 2016, 11:04
@@ -38,7 +38,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "entity_stats.hpp"
+#include "creature_stats.hpp"
 #include "effect.hpp"
 #include "entity.hpp"
 
@@ -47,6 +47,16 @@
 class Creature : Entity {
 
 public:
+
+	typedef struct _sSkill {
+		_sSkill(std::uint16_t ml)
+		{
+			mastery = ml;
+		}
+		std::uint16_t 	mastery;	// Mastery level of the skill (05%-100+%)
+		std::uint16_t	learn_rool;	// Learn roll gained and still unused
+	} sSkill;
+	
     Creature (const std::string name);
 
     std::uint16_t GetSkill(eSkills skill);
