@@ -1,6 +1,6 @@
 ###############################################################################
 ##  The Lords of War Makefile
-## 
+##
 ##  Short istructions
 ##  make - create executable
 ##  make clean - clean objects and program
@@ -17,7 +17,7 @@ MODULE_INCLUDE = -I./include \
                  -I../SFGUI/include \
                  -I../lua/src
 
-CPPFLAGS = $(MODULE_INCLUDE) -Wall -std=c++11 -pedantic -Werror -g
+CPPFLAGS = $(MODULE_INCLUDE) -Wall -std=c++11 -pedantic -Werror -g -MMD
 #CPPFLAGS += -O2 -pg
 #LINK = -pg
 
@@ -27,7 +27,7 @@ LIBS = -lstdc++ \
 
 .PHONY: default all clean help depend
 .PRECIOUS: $(TARGET) $(OBJECTS)
-	
+
 default: $(TARGET)
 all: default
 
@@ -46,17 +46,12 @@ SOURCES = $(wildcard $(SOURCE)/*.cpp)
 $(TARGET): $(OBJECTS)
 	$(LD) $(OBJECTS) -Wall $(LIBS) $(LINK) -o $@
 
--include $(DEPENDS)
-
 clean:
 	-rm -f $(SOURCE)/*.o
 	-rm -f $(TARGET)
 	-rm -r $(SOURCE)/*.d
-	
-depend: $(DEPENDS)
-	
-#%.d: %.cpp
-#	$(CPP) $(CPPFLAGS) -MM -MT $(@:.d=.o) >$@
+
+-include $(DEPENDS)
 
 
 
