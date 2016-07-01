@@ -24,6 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "game_engine_tables.hpp"
 #include "creature.hpp"
 
 Creature::Creature(const std::string name) :
@@ -32,6 +33,7 @@ m_name("Unknown")
     m_name = name;
 
     InitializeSkillTable();
+    InitializeCombatTables();
 
     // Skill table initialization
     for (int i = 0; i < eSkills::UNKNOWN_SKILL; i++)

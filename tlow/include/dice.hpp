@@ -24,13 +24,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
+/*
  * File:   player.hpp
  * Author: broken
  *
  * Created on 15 June 2016, 13:19
  */
- 
+
 #ifndef DICE_HPP
 #define DICE_HPP
 
@@ -43,15 +43,15 @@ class Dice {
 
 public:
 
-	Dice();
+    Dice();
 
-	eResultType SkillRoll(eDiceType die, std::uint16_t num_dice, eSkills skill, Creature & creature);
-	eResultType StatRoll(eDiceType die, std::uint16_t num_dice, Creature & creature);
+    eRollResult SkillRoll(eDiceType die, std::uint16_t num_dice, eSkills skill, Creature & creature);
+    eRollResult StatRoll(eDiceType die, std::uint16_t num_dice, Creature & creature);
 
 private:
 
-	std::uint16_t Roll(eDiceType die, std::uint16_t num_dice);
-	std::uint16_t RollResult(std::uint16_t num_dice, eDiceType die, Creature *creature);
+    std::uint16_t Roll(eDiceType die, std::uint16_t num_dice);
+    std::uint16_t RollResult(std::uint16_t num_dice, eDiceType die, Creature *creature);
 
 };
 

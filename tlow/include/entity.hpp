@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
+/*
  * File:   entity.hpp
  * Author: broken
  *
@@ -39,7 +39,7 @@
  * This class will hold all the basic operation that an entity can have.
  * All entity will share some basic parameters, be creatures, objects, environments
  * etc.
- * 
+ *
  */
 
 class Entity
@@ -49,34 +49,34 @@ class Entity
 
         void SetDamageStatus(bool status) { m_canBeDamaged = status; }
         bool GetDamageStatus() { return m_canBeDamaged; }
-        
+
         void SetDestroyStatus(bool status) { m_canBeDamaged = status; }
         bool GetDestroyStatus() { return m_canBeDamaged; }
-        
+
         void SetMoveStatus(bool status) { m_canMove = status; }
         bool GetMoveStatus() { return m_canMove; }
-        
+
         void SetPassableStatus(bool status) { m_isPassable = status; }
         bool GetPassableStatus() { return m_isPassable; }
-        
+
         void SetVisibleStatus(bool status) { m_isVisible = status; }
         bool GetVisibleStatus() { return m_isVisible; }
-        
+
         void SetPosX(unsigned int posX) { m_posX = posX; }
         bool GetPosX() { return m_posX; }
-        
+
         void SetPosY(unsigned int posY) { m_posY = posY; }
         bool GetPosY() { return m_posY; }
-        
+
         void SetPosZ(char posZ) { m_posZ = posZ; }
         bool GetPosZ() { return m_posZ; }
-        
-        void SetIconPath(char * path) 
-        { 
+
+        void SetIconPath(char * path)
+        {
             m_IconPath = path;
         }
         void GetIconPath(std::string & path) { path = m_IconPath; }
-        
+
         typedef enum
         {
             TERRAIN_ENT = 0,
@@ -86,7 +86,7 @@ class Entity
             EFFECT_ENT,
             WRONG_ENT
         } EntityType;
-        
+
     private:
 
         EntityType m_type;
@@ -101,7 +101,6 @@ class Entity
         char m_posZ; // negative is below ground. 0 is sea level/ground level
         std::string  m_IconPath; // Path to graphical resource
 
-            
 };
 
 #endif /* ENTITY_HPP */

@@ -204,10 +204,5 @@ typedef struct {
     eLocation   location;   // Location of the injury
 } sWound;
 
-// Global structures relating to creatures
-extern std::vector<sSkillDefinition> skill_table;
-
-void InitializeSkillTable();
-
 #endif /* CREATURE_STATS_HPP */
 

@@ -7,61 +7,61 @@
 
 Dice::Dice ()
 {
-	// Initialize random seed
-	srand(time(NULL));
+    // Initialize random seed
+    srand(time(NULL));
 }
 
-eResultType Dice::SkillRoll(eDiceType die, std::uint16_t num_dice, eSkills skill, Creature & creature)
+eRollResult Dice::SkillRoll(eDiceType die, std::uint16_t num_dice, eSkills skill, Creature & creature)
 {
-	eResultType rc = eResultType::UNKNOWN_RESULT;
-	std::uint16_t roll = 0;
-	std::uint16_t sml = 0;
-	
-	roll = Roll(die, num_dice);
-	sml = creature.GetSkill(skill);
+    eRollResult rc = UNKNOWN_RESULT;
+    std::uint16_t roll = 0;
+    std::uint16_t sml = 0;
 
-	// Medium Success
-	if (roll < sml)
-	{
-		if ((roll % CRITICAL_ROLL) == 0)
-		{
-			rc = eResultType::CS_RESULT;
-		}
-		else
-		{
-			rc = eResultType::MS_RESULT;
-		}
-	}
-	else // Medium Failure
-	{
-		if ((roll % CRITICAL_ROLL) == 0)
-		{
-			rc = eResultType::CF_RESULT;
-		}
-		else
-		{
-			rc = eResultType::MF_RESULT;
-		}
-	}
+    roll = Roll(die, num_dice);
+    sml = creature.GetSkill(skill);
 
-	return rc;
+    // Success
+    if (roll < sml)
+    {
+        if (is_critical(roll))
+        {
+            rc = CS_RESULT;
+        }
+        else
+        {
+            rc = MS_RESULT;
+        }
+    }
+    else // Failure
+    {
+        if (is_critical(roll))
+        {
+            rc = CF_RESULT;
+        }
+        else
+        {
+            rc = MF_RESULT;
+        }
+    }
+
+    return rc;
 }
 
-eResultType Dice::StatRoll(eDiceType dice, std::uint16_t num_dice, Creature & creature)
+eRollResult Dice::StatRoll(eDiceType dice, std::uint16_t num_dice, Creature & creature)
 {
-	eResultType rc = eResultType::UNKNOWN_RESULT;
+    eRollResult rc = UNKNOWN_RESULT;
 
-	return rc;
+    return rc;
 }
 
 std::uint16_t Dice::Roll(eDiceType die, std::uint16_t num_dice)
 {
-	std::uint16_t rc = 0;
+    std::uint16_t rc = 0;
 
-	for (int i = 0; i < num_dice; i++)
-	{
-		rc += rand() % die;
-	}
+    for (int i = 0; i < num_dice; i++)
+    {
+        rc += roll(die);
+    }
 
-	return rc;
+    return rc;
 }

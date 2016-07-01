@@ -25,54 +25,32 @@
  */
 
 /*
- * File:   creature.hpp
+ * File:   game_engine_init.hpp
  * Author: broken
  *
  * Created on 15 June 2016, 11:04
  */
-#ifndef CREATURE_HPP
-#define CREATURE_HPP
 
-#include <list>
-#include <string>
-#include <unordered_map>
-#include <vector>
+#ifndef GAME_ENGINE_INIT_HPP
+#define GAME_ENGINE_INIT_HPP
 
+#include "tlow_defs.hpp"
+#include "engine_defs.hpp"
 #include "creature_stats.hpp"
-#include "effect.hpp"
-#include "entity.hpp"
+
+// Global structures relating to creatures
+extern std::vector<sSkillDefinition> skill_table;
+
+// Combat Results table are sized based on a square matrix
+//    CF MF MS CS
+// CF -  -  -  -
+// MF -  -  -  -
+// MS -  -  -  -
+// CS -  -  -  -
+extern std::vector<std::vector<std::vector<eCombatResult>>> melee_tables;
+
+void InitializeSkillTable();
+void InitializeCombatTables();
 
 
-
-class Creature : Entity {
-
-public:
-
-    typedef struct _sSkill {
-        _sSkill(std::uint16_t ml)
-        {
-            mastery = ml;
-        }
-        std::uint16_t   mastery;    // Mastery level of the skill (05%-100+%)
-        std::uint16_t   learn_rool; // Learn roll gained and still unused
-    } sSkill;
-
-    Creature (const std::string name);
-
-    std::uint16_t GetSkill(eSkills skill);
-
-private:
-    std::string m_name; // Name of the creature
-    // 1st = eStat enum , 2nd Stat value
-    std::unordered_map<std::uint16_t, std::uint16_t> stats;
-    // 1st = eSkill enum , 2nd sSkills structure
-    std::unordered_map<std::uint16_t, sSkill> skills;
-
-    std::vector<sWound> wounds;
-    std::vector<std::uint16_t> fatigue; // Fatigue levels (1, 2, 3, ecc)
-
-
-
-};
-
-#endif // CREATURE_HPP
+#endif // GAME_ENGINE_INIT_HPP

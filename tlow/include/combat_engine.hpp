@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
+/*
  * File:   entity_stats.hpp
  * Author: broken
  *
@@ -34,10 +34,12 @@
 #ifndef COMBAT_ENGINE_HPP
 #define COMBAT_ENGINE_HPP
 
-#include "creature.hpp"
+#include "engine_defs.hpp"
+#include "dice.hpp"
+
 
 /**
- *	CombatEngine
+ *  CombatEngine
  *
  *  This singleton class is responsible for carry on all the combat
  *  needs
@@ -46,53 +48,62 @@ class CombatEngine {
 
 public:
 
-	typedef enum
-	{
-		IGNORE_DEF,
-		DODGE_DEF,
-		PARRY_DEF,
-		BLOCK_DEF,
-		INVALID_DEF
-	} eDefence;
+    static CombatEngine * getCombatEngine()
+    {
+        if (m_this == NULL)
+        {
+            m_this = new CombatEngine();
+        }
 
-	typedef enum
-	{
-		MELEE_ATT,
-		RANGED_ATT,
-		GRAPPLE_ATT,
-		PRESS_ATT
-	} eAttack;
+        return m_this;
+    }
 
-	typedef enum
-	{
-		A1DICE,
-		A2DICE,
-		A3DICE,
-		D1DICE,
-		D2DICE,
-		D3DICE,
-		
-	}eResult;
+    // Melee attack
+    eCombatResult ResolveAttack(Creature &attacker, Creature &defender,
+            eAttackType attack, eMeleeDefence defence,
+            std::uint16_t attacker_num, Effect &effect);
 
-	static CombatEngine * getCombatEngine()
-	{
-		if (m_this == NULL)
-		{
-			m_this = new CombatEngine();
-		}
+    // Disarm attack
+    eCombatResult ResolveAttack(Creature &attacker, Creature &defender,
+            eAttackType attack, eDisarmDefence defence,
+            std::uint16_t attacker_num, Effect &effect);
 
-		return m_this;
-	}
+    // Press attack
+    eCombatResult ResolveAttack(Creature &attacker, Creature &defender,
+            eAttackType attack, ePressDefence defence,
+            std::uint16_t attacker_num, Effect &effect);
 
-	int ResolveAttack(Creature &attacker, Creature &defender,
-			eAttack attack, eDefence defence,
-			std::uint16_t attacker_num, Effect &effect);
+    // Grapple attack
+    eCombatResult ResolveAttack(Creature &attacker, Creature &defender,
+            eAttackType attack, eGrappleDefence defence,
+            std::uint16_t attacker_num, Effect &effect);
+
+    // Missile attack
+    eCombatResult ResolveAttack(Creature &attacker, Creature &defender,
+            eAttackType attack, eMissileDefence defence,
+            std::uint16_t attacker_num, Effect &effect);
+
+
+    // Special attacks
+    // Jousting
+    eCombatResult JoustingAttack(Creature &attacker, Creature &defender,
+            std::uint16_t attacker_num, Effect &effect);
+
+    // Mental conflict
+    eCombatResult MentalAttack(Creature &attacker, Creature &defender,
+            std::uint16_t attacker_num, Effect &effect);
+
+    // Initiative - first engagment
+    eCombatResult InitiativeAttack(Creature &attacker, Creature &defender,
+            std::uint16_t attacker_num, Effect &effect);
+
 
 private:
-	// Private construtor: the CombatEngine is never directly instantiated
-	CombatEngine();
+    // Private construtor: the CombatEngine is never directly instantiated
+    CombatEngine();
 
-	// Singleton pointer
-	static CombatEngine *m_this;
+    // Singleton pointer
+    static CombatEngine *m_this;
 };
+
 #endif // COMBAT_ENGINE_HPP
