@@ -1,4 +1,5 @@
 #include <vector>
+#include <algorithm>
 #include "engine_defs.hpp"
 #include "game_engine_tables.hpp"
 
@@ -11,7 +12,20 @@
 //~ ePenaltyType    penalty;    // What penalty influence the skill
 
 std::vector<sSkillDefinition> skill_table(UNKNOWN_SKILL);
-std::vector<std::vector<std::vector<eCombatResult>>> melee_tables(UNKNOWN_RESULT);
+
+// This is a vector of 2D tables. Essentially a 3D vector.
+//    ,-------,
+//   /___/__ / |
+//  /   /   /| |
+// ,---/---/ |/|
+// |___|___|/|/
+// |   |   | /
+// `-------'`
+// 3d dimension = Type of attack, table is "Attaccker roll vs Defender roll"
+// Personal frustration note: c++ syntax and STL are a total, useless, wasteful mess.
+std::vector<std::vector<std::vector<eCombatResult>>> melee_tables((UNKOWN_MD + UNKOWN_DD + UNKOWN_PD + UNKOWN_GD + UNKOWN_MSD), // Size the arry of matrices
+                                                                  std::vector<std::vector<eCombatResult>>(UNKNOWN_RESULT,   // Size the combat matrices
+                                                                  std::vector<eCombatResult>(UNKNOWN_RESULT)));
 
 void InitializeSkillTable()
 {
@@ -77,51 +91,119 @@ void InitializeCombatTables()
     // Attacker CF
     melee_tables[WEAPON_PARRY_MD][CF_RESULT][CF_RESULT] = BF_3D_CS;
     melee_tables[WEAPON_PARRY_MD][CF_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][CF_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][CF_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[WEAPON_PARRY_MD][CF_RESULT][MS_RESULT] = AF_3D_CS;
+    melee_tables[WEAPON_PARRY_MD][CF_RESULT][CS_RESULT] = DTA_CS;
     // Attacker MF
-    melee_tables[WEAPON_PARRY_MD][MF_RESULT][CF_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][MF_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][MF_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][MF_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[WEAPON_PARRY_MD][MF_RESULT][CF_RESULT] = DF_3D_CS;
+    melee_tables[WEAPON_PARRY_MD][MF_RESULT][MF_RESULT] = PARRY_CS;
+    melee_tables[WEAPON_PARRY_MD][MF_RESULT][MS_RESULT] = PARRY_CS;
+    melee_tables[WEAPON_PARRY_MD][MF_RESULT][CS_RESULT] = AF_3D_CS;
     // Attacker MS
-    melee_tables[WEAPON_PARRY_MD][MS_RESULT][CF_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][MS_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][MS_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][MS_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[WEAPON_PARRY_MD][MS_RESULT][CF_RESULT] = ASK_2D_CS;
+    melee_tables[WEAPON_PARRY_MD][MS_RESULT][MF_RESULT] = ASK_1D_CS;
+    melee_tables[WEAPON_PARRY_MD][MS_RESULT][MS_RESULT] = PARRY_CS;
+    melee_tables[WEAPON_PARRY_MD][MS_RESULT][CS_RESULT] = PARRY_CS;
     // Attacker CS
-    melee_tables[WEAPON_PARRY_MD][CS_RESULT][CF_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][CS_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][CS_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[WEAPON_PARRY_MD][CS_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[WEAPON_PARRY_MD][CS_RESULT][CF_RESULT] = ASK_3D_CS;
+    melee_tables[WEAPON_PARRY_MD][CS_RESULT][MF_RESULT] = ASK_2D_CS;
+    melee_tables[WEAPON_PARRY_MD][CS_RESULT][MS_RESULT] = ASK_1D_CS;
+    melee_tables[WEAPON_PARRY_MD][CS_RESULT][CS_RESULT] = PARRY_CS;
 
     // Counterstrike
     // Attacker CF
     melee_tables[COUNTERSTRIKE_MD][CF_RESULT][CF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][CF_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][CF_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][CF_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][CF_RESULT][MF_RESULT] = AF_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][CF_RESULT][MS_RESULT] = DSK_2D_CS;
+    melee_tables[COUNTERSTRIKE_MD][CF_RESULT][CS_RESULT] = DSK_3D_CS;
     // Attacker MF
-    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][CF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][CF_RESULT] = DF_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][MF_RESULT] = BLOCK_CS;
+    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][MS_RESULT] = DSK_1D_CS;
+    melee_tables[COUNTERSTRIKE_MD][MF_RESULT][CS_RESULT] = DSK_2D_CS;
     // Attacker MS
-    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][CF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][CF_RESULT] = ASK_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][MF_RESULT] = ASK_2D_CS;
+    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][MS_RESULT] = BSK_1D_CS;
+    melee_tables[COUNTERSTRIKE_MD][MS_RESULT][CS_RESULT] = DSK_1D_CS;
     // Attacker CS
-    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][CF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][MF_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][MS_RESULT] = BF_3D_CS;
-    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][CS_RESULT] = BF_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][CF_RESULT] = ASK_4D_CS;
+    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][MF_RESULT] = ASK_3D_CS;
+    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][MS_RESULT] = ASK_2D_CS;
+    melee_tables[COUNTERSTRIKE_MD][CS_RESULT][CS_RESULT] = BSK_1D_CS;
 
-    //~ melee_tables[]
-    //~ melee_tables[DODGE_MD]
-    //~ melee_tables[GRAPPLE_MD]
-    //~ melee_tables[DISARM_MD]
-    //~ melee_tables[IGNORE_MD]
+    // Dodge
+    // Attacker CF
+    melee_tables[DODGE_MD][CF_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][CF_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][CF_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][CF_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker MF
+    melee_tables[DODGE_MD][MF_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][MF_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][MF_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][MF_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker MS
+    melee_tables[DODGE_MD][MS_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][MS_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][MS_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][MS_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker CS
+    melee_tables[DODGE_MD][CS_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][CS_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][CS_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DODGE_MD][CS_RESULT][CS_RESULT] = BF_3D_CS;
 
+    // Grapple
+    // Attacker CF
+    melee_tables[GRAPPLE_MD][CF_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][CF_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][CF_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][CF_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker MF
+    melee_tables[GRAPPLE_MD][MF_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][MF_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][MF_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][MF_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker MS
+    melee_tables[GRAPPLE_MD][MS_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][MS_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][MS_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][MS_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker CS
+    melee_tables[GRAPPLE_MD][CS_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][CS_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][CS_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[GRAPPLE_MD][CS_RESULT][CS_RESULT] = BF_3D_CS;
 
+    // Disarm
+    // Attacker CF
+    melee_tables[DISARM_MD][CF_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][CF_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][CF_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][CF_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker MF
+    melee_tables[DISARM_MD][MF_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][MF_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][MF_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][MF_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker MS
+    melee_tables[DISARM_MD][MS_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][MS_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][MS_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][MS_RESULT][CS_RESULT] = BF_3D_CS;
+    // Attacker CS
+    melee_tables[DISARM_MD][CS_RESULT][CF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][CS_RESULT][MF_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][CS_RESULT][MS_RESULT] = BF_3D_CS;
+    melee_tables[DISARM_MD][CS_RESULT][CS_RESULT] = BF_3D_CS;
+
+    //Ignore
+    for (int i = 0; i <  UNKNOWN_RESULT; i++)
+    {
+        // Attacker Result rool - Defender ignore, no result required/ignored
+        melee_tables[IGNORE_MD][CF_RESULT][i] = DTA_CS;
+        melee_tables[IGNORE_MD][MF_RESULT][i] = ASK_1D_CS;
+        melee_tables[IGNORE_MD][MS_RESULT][i] = ASK_3D_CS;
+        melee_tables[IGNORE_MD][CS_RESULT][i] = ASK_4D_CS;
+    }
 }

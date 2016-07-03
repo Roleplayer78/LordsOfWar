@@ -44,17 +44,6 @@
  * game system for good.
  */
 
-const std::uint16_t STAT_LEVEL = 1; // This injuries and fatigue levels when rolling a stat on 3d6
-const std::uint16_t SKILL_LEVEL = 5;    // Each level of Injury / Fatigue is multiplied by this - 5%
-                            // This must be in accordance to the SKILL DIE 1d100
-
-const std::uint16_t MAX_SKILL = 100; // Max skill is SB + MAX_SKILL. This is computed runtime
-
-const std::uint16_t CRITICAL_ROLL = 5;  // This means tha every roll divisible
-                                        // by this number is a critical: 5, 10, 15, ecc
-                                        // If => to SML is a critical success
-                                        // if <= to SML is a critical failure
-
 typedef enum
 {
     D2 = 2,
@@ -78,6 +67,17 @@ typedef enum
     CS_RESULT,      // Critical Success
     UNKNOWN_RESULT
 } eRollResult;
+
+const std::uint16_t STAT_LEVEL = 1; // This injuries and fatigue levels when rolling a stat on 3d6
+const std::uint16_t SKILL_LEVEL = 5;    // Each level of Injury / Fatigue is multiplied by this - 5%
+                            // This must be in accordance to the SKILL DIE 1d100
+
+const std::uint16_t MAX_SKILL = 100; // Max skill is SB + MAX_SKILL. This is computed runtime
+
+const std::uint16_t CRITICAL_ROLL = 5;  // This means tha every roll divisible
+                                        // by this number is a critical: 5, 10, 15, ecc
+                                        // If => to SML is a critical success
+                                        // if <= to SML is a critical failure
 
 // This simple function will check if the roll is a critical success or not:
 // If the roll is divisible by CRITICAL_ROLL is critical (success/failure) otherwise not
@@ -134,6 +134,7 @@ typedef enum
     DF_3D_CS,
     DF_4D_CS,
     DF_5D_CS,
+    DF_6D_CS,
     // Both Fumble (drop weapon/object)
     BF_1D_CS,
     BF_2D_CS,
