@@ -57,41 +57,6 @@ typedef enum {
     WILLPOWER_STAT,
     MORALITY_STAT,
     PIETY_STAT,
-
-    // Physical Skills
-    CLIMBING_SKILL,
-    JUMPING_SKILL,
-    STEALTH_SKILL,
-    THROWING_SKILL,
-    ACROBATICS_SKILL,
-    DANCING_SKILL,
-    LEGERDMAIN_SKILL,
-    SKIING_SKILL,
-    SWIMMING_SKILL,
-
-    // COMMUNICATION SKILL
-    AWARENESS_SKILL,
-    INTRIGUE_SKILL,
-    ORATORY_SKILL,
-    RHETORIC_SKILL,
-    SINGING_SKILL,
-    ACTING_SKILL,
-    LOVECRAFT_SKILL,
-    MENTAL_CONFLICT_SKILL,
-    MUSICIAN_SKILL,
-
-    // LORE/CRAFT SKILL
-    AGRICOLTURE_SKILL,
-    ALCHEMY_SKILL,
-    ANIMALCRAFT_SKILL,
-    ASTROLOGY_SKILL,
-    BREWING_SKILL,
-    CERAMICS_SKILL,
-    COOKERY_SKILL,
-
-
-
-
     UNKNOWN_STAT
 } eStats;
 
@@ -136,6 +101,76 @@ typedef enum {
     CROSSBOW_SKILL,
     ENDURANCE_SKILL,    // Derived - This is only used for SB
     MOVEMENT_SKILL,     // Derived - This is only used for SB
+    // Physical Skills
+    CLIMBING_SKILL,
+    JUMPING_SKILL,
+    STEALTH_SKILL,
+    THROWING_SKILL,
+    ACROBATICS_SKILL,
+    DANCING_SKILL,
+    LEGERDMAIN_SKILL,
+    SKIING_SKILL,
+    SWIMMING_SKILL,
+
+    // COMMUNICATION SKILL
+    AWARENESS_SKILL,
+    INTRIGUE_SKILL,
+    ORATORY_SKILL,
+    RHETORIC_SKILL,
+    SINGING_SKILL,
+    ACTING_SKILL,
+    LOVECRAFT_SKILL,
+    MENTAL_CONFLICT_SKILL,
+    MUSICIAN_SKILL,
+
+    // LORE/CRAFT SKILL
+    AGRICOLTURE_SKILL,
+    ALCHEMY_SKILL,
+    ANIMALCRAFT_SKILL,
+    ASTROLOGY_SKILL,
+    BREWING_SKILL,
+    CERAMICS_SKILL,
+    COOKERY_SKILL,
+    DRAWING_SKILL,
+    EMBALMING_SKILL,
+    ENGINEERING_SKILL,
+    FISHING_SKILL,
+    FLETCHING_SKILL,
+    FOLKLORE_SKILL,
+    FORAGING_SKILL,
+    GLASSWORK_SKILL,
+    HERALDRY_SKILL,
+    HERBLORE_SKILL,
+    HIDEWORK_SKILL,
+    JEWELCRAFT_SKILL,
+    LAW_SKILL,
+    LOCKCRAFT_SKILL,
+    MASONRY_SKILL,
+    MATHEMATICS_SKILL,
+    METALCRAFT_SKILL,
+    MILLING_SKILL,
+    MINING_SKILL,
+    PERFUMERY_SKILL,
+    PHYSICIAN_SKILL,
+    PILOTING_SKILL,
+    RUNECRAFT_SKILL,
+    SEAMANSHIP_SKILL,
+    SHIPWRIGHT_SKILL,
+    SURVIVAL_SKILL,
+    TAROTRY_SKILL,
+    TEXTILCRAFT_SKILL,
+    TIMBERCRAFT_SKILL,
+    TRACKING_SKILL,
+    TRAPPING_SKILL,
+    WEAPONCRAFT_SKILL,
+    WEATHERLORE_SKILL,
+    WOODCRAFT_SKILL,
+
+    // TODO ?? Psionic skills....
+
+    // TODO ?? Religious skill...
+
+    // TODO ?????? Magic skills .....
     UNKNOWN_SKILL
 } eSkills;
 
@@ -147,6 +182,7 @@ typedef struct _sSkillDefinition{
     eStats          stat3;      // 3rd stat for computing SB
     std::string     path;       // Path to icon
     ePenaltyType    penalty;    // What penalty influence the skill
+    bool            can_increase;   // The skill can be increased through training
 } sSkillDefinition;
 
 /**
