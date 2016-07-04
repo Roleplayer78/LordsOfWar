@@ -23,17 +23,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=4
-FILE_NAME_0=2884;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fentity.hpp;0;4
-FILE_NAME_1=1682;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Fsource%2Fentity.cpp;0;4
-FILE_NAME_2=1629;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Fsource%2Fcreature.cpp;0;4
-FILE_NAME_3=2855;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fcreature_stats.hpp;0;4
-FILE_NAME_4=439;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Fsource%2Fskill_table.cpp;0;4
-FILE_NAME_5=1747;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Ftlow_defs.hpp;0;4
-FILE_NAME_6=1637;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fdice.hpp;0;4
-FILE_NAME_7=926;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Fsource%2Fdice.cpp;0;4
-FILE_NAME_8=2692;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fengine_defs.hpp;0;4
-FILE_NAME_9=1719;C++;0;EUTF-8;1;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fcreature.hpp;0;4
+current_page=0
+FILE_NAME_0=1360;C++;0;EUTF-8;0;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fengine_defs.hpp;0;4
+FILE_NAME_1=1845;C++;0;EUTF-8;0;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fgame_engine_tables.hpp;0;4
+FILE_NAME_2=4753;C++;0;EUTF-8;0;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Fsource%2Fgame_engine_tables.cpp;0;4
+FILE_NAME_3=1563;C++;0;EUTF-8;0;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Fsource%2Fcreature.cpp;0;4
+FILE_NAME_4=0;C++;0;EUTF-8;0;1;0;%2Fhome%2Fbroken%2FProjects%2FLordsOfWar%2Ftlow%2Finclude%2Fdice.hpp;0;4
 
 [VTE]
 last_dir=/home/broken
