@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 2016, broken
  * All rights reserved.
@@ -25,33 +24,31 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
- * File:   entity_stats.hpp
+/*
+ * File:   player.hpp
  * Author: broken
  *
- * Created on 15 June 2016, 11:04
+ * Created on 15 June 2016, 13:19
  */
 
- #ifndef EFFECT_HPP
- #define EFFECT_HPP
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-#include "entity.hpp"
+#include "tlow_defs.hpp"
+#include "creature/creature.hpp"
 
-class Effect : Entity {
+class Player : Creature {
+    public:
+        Player(const char * icon_path);
 
-public:
-	typedef enum {
-		SPELL_EFFECT = 0,
-		DISEASE_EFFECT,
-		ENVIRONMENTAL_EFFECT,
-		UNKNOWN_EFFECT
-	} eEffectType;
+    private:
 
-	Effect();
-
-private:
-	uint16_t m_speed; // How fast the entity move (squares/hexes/whatever)
+        std::string m_icon_path;
+        std::string m_name;
 
 };
 
- #endif // EFFECT_HPP
+
+
+#endif /* PLAYER_HPP */
+

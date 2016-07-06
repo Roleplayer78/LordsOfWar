@@ -1,3 +1,4 @@
+
 /*
  * Copyright (c) 2016, broken
  * All rights reserved.
@@ -24,25 +25,33 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "tlow.hpp"
-#include "engine/game_engine_tables.hpp"
-#include "creature/creature.hpp"
+/*
+ * File:   entity_stats.hpp
+ * Author: broken
+ *
+ * Created on 15 June 2016, 11:04
+ */
 
-Creature::Creature(const std::string name) :
-    m_name("Unknown"), m_fatigue(0)
-{
-    m_name = name;
-    UNUSED_VAR(m_fatigue);
+ #ifndef EFFECT_HPP
+ #define EFFECT_HPP
 
-    m_stats.fill({10,12});
-    m_skills.fill({50,0});
+#include "engine/entity.hpp"
 
-}
+class Effect : Entity {
 
-std::uint16_t Creature::GetSkill(eSkills skill)
-{
-    // Return the value of requested skill
-    //~ return m_skills[skill].mastery;
+public:
+    typedef enum {
+        SPELL_EFFECT = 0,
+        DISEASE_EFFECT,
+        ENVIRONMENTAL_EFFECT,
+        UNKNOWN_EFFECT
+    } eEffectType;
 
-    return 0;
-}
+    Effect();
+
+private:
+    uint16_t m_speed; // How fast the entity move (squares/hexes/whatever)
+
+};
+
+ #endif // EFFECT_HPP

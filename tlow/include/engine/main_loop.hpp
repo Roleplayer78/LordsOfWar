@@ -25,54 +25,45 @@
  */
 
 /*
- * File:   creature.hpp
+ * File:   main_loop.hpp
  * Author: broken
  *
- * Created on 15 June 2016, 11:04
+ * Created on 07 June 2016, 22:33
  */
-#ifndef CREATURE_HPP
-#define CREATURE_HPP
 
-#include <list>
-#include <string>
-#include <unordered_map>
-#include <vector>
+#ifndef MAIN_LOOP_HPP
+#define MAIN_LOOP_HPP
 
-#include "creature_stats.hpp"
-#include "effect.hpp"
-#include "entity.hpp"
+#include "ui/ui.hpp"
 
-
-
-class Creature : Entity {
-
+class MainLoop
+{
 public:
+    MainLoop(sf::RenderWindow *render, sfg::SFGUI * sfgui) :
+        m_render(NULL), m_desktop(), m_sfgui(NULL)
+    {
+        m_render = render;
+        m_sfgui = sfgui;
+        m_desktop = std::make_shared<sfg::Desktop>();
 
-    typedef struct _sSkill {
-        _sSkill(std::uint16_t ml)
-        {
-            mastery = ml;
-        }
-        std::uint16_t   mastery;    // Mastery level of the skill (05%-100+%)
-        std::uint16_t   learn_rool; // Learn roll gained and still unused
-    } sSkill;
+        m_UserInterface = new UI(m_desktop, render->getSize());
+    };
 
-    Creature (const std::string name);
-
-    std::uint16_t GetSkill(eSkills skill);
+    // Start the game main loop
+    int Run();
+    void InitGameEngine();
 
 private:
-    std::string m_name; // Name of the creature
-    // 1st = eStat enum , 2nd Stat value
-    std::unordered_map<std::uint16_t, std::uint16_t> stats;
-    // 1st = eSkill enum , 2nd sSkills structure
-    std::unordered_map<std::uint16_t, sSkill> skills;
 
-    std::vector<sWound> wounds;
-    std::vector<std::uint16_t> fatigue; // Fatigue levels (1, 2, 3, ecc)
+    void CreateLayout();
 
+    sf::RenderWindow * m_render;
+    std::shared_ptr<sfg::Desktop> m_desktop;
+    sfg::SFGUI * m_sfgui;
 
+    UI *m_UserInterface;
 
 };
 
-#endif // CREATURE_HPP
+#endif /* MAIN_LOOP_HPP */
+

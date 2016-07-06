@@ -25,32 +25,14 @@
  */
 
 /*
- * File:   game_engine_init.hpp
+ * File:   weapons.hpp
  * Author: broken
  *
  * Created on 15 June 2016, 11:04
  */
 
-#ifndef GAME_ENGINE_INIT_HPP
-#define GAME_ENGINE_INIT_HPP
-
-#include "tlow_defs.hpp"
-#include "engine_defs.hpp"
-#include "creature_stats.hpp"
-
-// Global structures relating to creatures
-extern std::vector<sSkillDefinition> skill_table;
-
-// Combat Results table are sized based on a square matrix
-//    CF MF MS CS
-// CF -  -  -  -
-// MF -  -  -  -
-// MS -  -  -  -
-// CS -  -  -  -
-extern std::vector<std::vector<std::vector<eCombatResult>>> melee_tables;
-
-void InitializeSkillTable();
-void InitializeCombatTables();
+#ifndef WEAPONS_HPP
+#define WEAPONS_HPP
 
 
-#endif // GAME_ENGINE_INIT_HPP
+#endif // WEAPONS_HPP

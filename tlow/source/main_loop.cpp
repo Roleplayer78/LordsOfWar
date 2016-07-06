@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
+/*
  * File:   ui.hpp
  * Author: broken
  *
@@ -38,15 +38,22 @@
 
 // Project includes
 #include "tlow_defs.hpp"
-#include "main_loop.hpp"
-#include "entity.hpp"
-#include "ui.hpp"
+#include "engine/main_loop.hpp"
+#include "engine/game_engine_tables.hpp"
+#include "ui/ui.hpp"
 
 void MainLoop::CreateLayout()
 {
     m_UserInterface->CreateStatsSection();
     m_UserInterface->CreateActionSection();
     m_UserInterface->CreateDiceSection();
+}
+
+void MainLoop::InitGameEngine()
+{
+    InitializeSkillTable();
+    InitializeCombatTables();
+
 }
 
 int MainLoop::Run()
@@ -92,6 +99,6 @@ int MainLoop::Run()
             // Update the window
             m_render->display();
     }
-    
+
     return STATUS_EXIT;
 }

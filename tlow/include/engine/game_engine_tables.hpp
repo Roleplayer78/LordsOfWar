@@ -24,25 +24,33 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "tlow.hpp"
-#include "engine/game_engine_tables.hpp"
-#include "creature/creature.hpp"
+/*
+ * File:   game_engine_init.hpp
+ * Author: broken
+ *
+ * Created on 15 June 2016, 11:04
+ */
 
-Creature::Creature(const std::string name) :
-    m_name("Unknown"), m_fatigue(0)
-{
-    m_name = name;
-    UNUSED_VAR(m_fatigue);
+#ifndef GAME_ENGINE_INIT_HPP
+#define GAME_ENGINE_INIT_HPP
 
-    m_stats.fill({10,12});
-    m_skills.fill({50,0});
+#include "tlow_defs.hpp"
+#include "engine/engine_types.hpp"
+#include "creature/creature_stats.hpp"
 
-}
+// Global structures relating to creatures
+extern std::vector<sSkillDefinition> skill_table;
 
-std::uint16_t Creature::GetSkill(eSkills skill)
-{
-    // Return the value of requested skill
-    //~ return m_skills[skill].mastery;
+// Combat Results table are sized based on a square matrix
+//    CF MF MS CS
+// CF -  -  -  -
+// MF -  -  -  -
+// MS -  -  -  -
+// CS -  -  -  -
+extern std::vector<std::vector<std::vector<eCombatResult>>> attack_matrices;
 
-    return 0;
-}
+void InitializeSkillTable();
+void InitializeCombatTables();
+
+
+#endif // GAME_ENGINE_INIT_HPP

@@ -40,21 +40,21 @@
 /**
  * Creature physical and mental attributes (statistics)
  */
-typedef enum {
+typedef enum _eStats{
 
     // Combat Skill
-    COMELINESS_STAT = 0,
-    STRENGTH_STAT,
+    STRENGTH_STAT = 0,
     STAMINA_STAT,
     DEXTERITY_STAT,
     AGILITY_STAT,
+    INTELLIGENCE_STAT,
+    AURA_STAT,
+    WILLPOWER_STAT,
     EYESIGHT_STAT,
     HEARING_STAT,
     SMELL_STAT,
     VOICE_STAT,
-    INTELLIGENCE_STAT,
-    AURA_STAT,
-    WILLPOWER_STAT,
+    COMELINESS_STAT,
     MORALITY_STAT,
     PIETY_STAT,
     UNKNOWN_STAT
@@ -66,20 +66,12 @@ typedef struct {
     std::string     path;   // Path to icon
 } sStat;
 
-/**
- *  Penalties types: skills/stats/derivate are affected by different
- *                   types
- */
-typedef enum {
-    UNIVERSA_PENALTY = 0,   // Default - affect everything
-    PHYSICAL_PENALTY,
-    UNKOWN_PENALTY
-} ePenaltyType;
+
 
 /**
  * Creature physical and mental skills (trainable or innate)
  */
-typedef enum {
+typedef enum _eSkills{
     // Combat skills
     INITIATIVE_SKILL = 0,
     DODGE_SKILL,
@@ -174,21 +166,10 @@ typedef enum {
     UNKNOWN_SKILL
 } eSkills;
 
-typedef struct _sSkillDefinition{
-    std::string     name;       // Name of the skill
-    std::uint16_t   oml;        // Opening Mastery Level of the skill
-    eStats          stat1;      // 1st stat for computing SB
-    eStats          stat2;      // 2nd stat for computing SB
-    eStats          stat3;      // 3rd stat for computing SB
-    std::string     path;       // Path to icon
-    ePenaltyType    penalty;    // What penalty influence the skill
-    bool            can_increase;   // The skill can be increased through training
-} sSkillDefinition;
-
 /**
- * Type and level of wounds
+ * Level of wounds
  */
-typedef enum {
+typedef enum _eWound{
     NO_WOUND = 0,
     MINOR_1_WOUND,
     MODERATE_2_WOUND,
@@ -198,14 +179,40 @@ typedef enum {
     UNKNOWN_WOUND
 } eWound;
 
+/**
+ * Wound Healing rate
+ */
+typedef enum _eHealingRate{
+    R0_HR = 0,
+    R1_HR,
+    R2_HR,
+    R3_HR,
+    R4_HR,
+    R5_HR,
+    R6_HR,
+    UNKNOW_HR
+} eHealingRate;
+
+/**
+ * Types of wounds
+ */
+typedef enum _eDamageType{
+    BLUNT_DAMAGE_TYPE = 0,
+    EDGE_DAMAGE_TYPE,
+    PUNCTURE_DAMAGE_TYPE,
+    FIRE_DAMAGE_TYPE,
+    UNKNOWN_DAMAGE_TYPE
+} eDamageType;
+
 typedef uint8_t     wound_days; // Days the wound is being healing
 typedef bool        infected;   // If the wound is infected
 
 /**
  * Body locations
  */
-typedef enum {
-    SKILL_LOC,
+typedef enum _eLocation{
+    NO_LOC = -1,
+    SKULL_LOC = 0,
     FACE_LOC,
     NECK_LOC,
     SHOULDER_SX_LOC,
@@ -219,8 +226,11 @@ typedef enum {
     HAND_SX_LOC,
     HAND_DX_LOC,
     THORAX_LOC,
+    THORAX_BACK_LOC,
     ABDOMEN_LOC,
+    ABDOMEN_BACK_LOC,
     HIP_LOC,
+    HIP_BACK_LOC,
     GROIN_LOC,
     THIGH_SX_LOC,
     THIGH_DX_LOC,
@@ -233,11 +243,37 @@ typedef enum {
     ALL_LOC,
 } eLocation;
 
+/**
+ *  Penalties types: skills/stats/derivate are affected by different
+ *                   types
+ *  Universal : Wounds / fatigue
+ *  Physical : Wounds / Fatigue / Encumbrance
+ */
+typedef enum {
+    UNIVERSA_PENALTY = 0,   // Default - affect everything
+    PHYSICAL_PENALTY,
+    UNKOWN_PENALTY
+} ePenaltyType;
+
+typedef struct _sSkillDefinition{
+    std::string     name;       // Name of the skill
+    std::uint16_t   oml;        // Opening Mastery Level of the skill
+    eStats          stat1;      // 1st stat for computing SB
+    eStats          stat2;      // 2nd stat for computing SB
+    eStats          stat3;      // 3rd stat for computing SB
+    std::string     path;       // Path to icon
+    ePenaltyType    penalty;    // What penalty influence the skill
+    bool            can_increase;   // The skill can be increased through training
+} sSkillDefinition;
+
 typedef struct {
-    eWound      level;   // Wound severity
+    eDamageType  type;       // Wound type B/E/P/F
+    eWound      level;      // Wound severity
     wound_days  days;       // Days the wound has been treated
+    eHealingRate hr;        // Healing rate
     infected    infection;  // Is this wound actually an infection
     eLocation   location;   // Location of the injury
+    bool        bleeding;   // If wound is bleeding
 } sWound;
 
 #endif /* CREATURE_STATS_HPP */

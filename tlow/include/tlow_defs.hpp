@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
+/*
  * File:   tlow_defs.hpp
  * Author: broken
  *
@@ -41,15 +41,15 @@
 
 // Inner game status
 typedef enum {
-	STATUS_INIT = 0,    // Game is starting, allocating resources
-	STATUS_RUNNING,     // Game is running. Clock ticking, ecc.
-	STATUS_PAUSE,       // Game is in... well, pause. Nothing can happen
-	STATUS_EXIT         // Game is closing. Exiting.ssss
+    STATUS_INIT = 0,    // Game is starting, allocating resources
+    STATUS_RUNNING,     // Game is running. Clock ticking, ecc.
+    STATUS_PAUSE,       // Game is in... well, pause. Nothing can happen
+    STATUS_EXIT         // Game is closing. Exiting.ssss
 } GameStatus;
 
 typedef enum {
-	SUCCESS = 0,
-	FAIL
+    SUCCESS = 0,
+    FAIL
 } ExitCodes;
 
 

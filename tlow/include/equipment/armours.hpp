@@ -25,36 +25,14 @@
  */
 
 /*
- * File:   player.hpp
+ * File:   armours.hpp
  * Author: broken
  *
- * Created on 15 June 2016, 13:19
+ * Created on 15 June 2016, 11:04
  */
 
-#ifndef DICE_HPP
-#define DICE_HPP
-
-#include <string>
-#include <cstdlib>
-#include "tlow_defs.hpp"
-#include "creature.hpp"
-
-class Dice {
-
-public:
-
-    Dice();
-
-    eRollResult SkillRoll(eDiceType die, std::uint16_t num_dice, eSkills skill, Creature & creature);
-    eRollResult StatRoll(eDiceType die, std::uint16_t num_dice, Creature & creature);
-
-private:
-
-    std::uint16_t Roll(eDiceType die, std::uint16_t num_dice);
-    std::uint16_t RollResult(std::uint16_t num_dice, eDiceType die, Creature *creature);
-
-};
+#ifndef ARMOURS_HPP
+#define ARMOURS_HPP
 
 
-
-#endif // DICE_HPP
+#endif // ARMOURS_HPP

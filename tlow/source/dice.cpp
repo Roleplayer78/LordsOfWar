@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <time.h>
-#include "creature.hpp"
-#include "engine_defs.hpp"
-#include "dice.hpp"
+#include "creature/creature.hpp"
+#include "engine/engine_types.hpp"
+#include "engine/dice.hpp"
 
 
 Dice::Dice ()

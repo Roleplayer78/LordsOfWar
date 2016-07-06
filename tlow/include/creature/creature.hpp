@@ -24,25 +24,57 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "tlow.hpp"
-#include "engine/game_engine_tables.hpp"
-#include "creature/creature.hpp"
+/*
+ * File:   creature.hpp
+ * Author: broken
+ *
+ * Created on 15 June 2016, 11:04
+ */
+#ifndef CREATURE_HPP
+#define CREATURE_HPP
 
-Creature::Creature(const std::string name) :
-    m_name("Unknown"), m_fatigue(0)
-{
-    m_name = name;
-    UNUSED_VAR(m_fatigue);
+#include <string>
+#include <vector>
+#include <array>
 
-    m_stats.fill({10,12});
-    m_skills.fill({50,0});
+#include "creature/creature_stats.hpp"
+#include "engine/effect.hpp"
+#include "engine/entity.hpp"
+#include "equipment/equipment_types.hpp"
 
-}
 
-std::uint16_t Creature::GetSkill(eSkills skill)
-{
-    // Return the value of requested skill
-    //~ return m_skills[skill].mastery;
 
-    return 0;
-}
+class Creature : Entity {
+
+public:
+
+    typedef struct _sCharacterStat {
+        std::uint16_t actual;
+        std::uint16_t potential;
+    } sCharacterStat;
+
+    typedef struct _sCharacterSkill {
+        std::uint16_t   mastery;    // Mastery level of the skill (05%-100+%)
+        std::uint16_t   dev_points; // development points available for the skill (10 = 1 roll)
+    } sCharacterSkill;
+
+    Creature (const std::string name);
+
+    std::uint16_t GetSkill(eSkills skill);
+
+private:
+
+    std::string m_name; // Name of the creature
+    // 1st = eStat enum , 2nd Stat value
+    std::array<sCharacterStat, UNKNOWN_STAT> m_stats;
+    // 1st = eSkilleSkilleSkilleSkilleSkill enum , 2nd sSkills structure
+    std::array<sCharacterSkill, UNKNOWN_SKILL> m_skills;
+
+    std::vector<sWound> m_wounds;
+    std::uint16_t m_fatigue; // Fatigue levels (1, 2, 3, ecc)
+
+
+
+};
+
+#endif // CREATURE_HPP

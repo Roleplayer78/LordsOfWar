@@ -24,31 +24,37 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
+/*
  * File:   player.hpp
  * Author: broken
  *
  * Created on 15 June 2016, 13:19
  */
 
-#ifndef PLAYER_HPP
-#define PLAYER_HPP
+#ifndef DICE_HPP
+#define DICE_HPP
 
+#include <string>
+#include <cstdlib>
 #include "tlow_defs.hpp"
-#include "creature.hpp"
+#include "creature/creature.hpp"
 
-class Player : Creature {
-    public:
-        Player(const char * icon_path);
-        
-    private:
-        
-        std::string m_icon_path;
-        std::string m_name;
-    
+class Dice {
+
+public:
+
+    Dice();
+
+    eRollResult SkillRoll(eDiceType die, std::uint16_t num_dice, eSkills skill, Creature & creature);
+    eRollResult StatRoll(eDiceType die, std::uint16_t num_dice, Creature & creature);
+
+private:
+
+    std::uint16_t Roll(eDiceType die, std::uint16_t num_dice);
+    std::uint16_t RollResult(std::uint16_t num_dice, eDiceType die, Creature *creature);
+
 };
 
 
 
-#endif /* PLAYER_HPP */
-
+#endif // DICE_HPP

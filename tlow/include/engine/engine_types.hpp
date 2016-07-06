@@ -31,13 +31,14 @@
  * Created on 15 June 2016, 11:04
  */
 
-#ifndef ENGINE_DEFS_HPP
-#define ENGINE_DEFS_HPP
+#ifndef ENGINE_TYPES_HPP
+#define ENGINE_TYPES_HPP
 
 #include <cinttypes>
 #include <stdlib.h>
 
-/* Base game engine definition
+/*
+ * Base game engine definition
  * This should be changed ONLY if you know what you are doing.
  *
  * Changing only 1 of them means that probably you are breaking the
@@ -228,4 +229,22 @@ typedef enum
     UNKOWN_MSD
 } eMissileDefence;
 
-#endif // ENGINE_DEFS_HPP
+typedef enum
+{
+    INITIATIVE_ID = 0,
+    UNKOWN_ID
+} eInitiativeDefence;
+
+typedef enum
+{
+    JPUSTING_JD = 0,
+    UNKOWN_JD
+} eJoustingDefence;
+
+typedef enum
+{
+    MENTAL_CONFLICT_MED = 0,
+    UNKOWN_MED
+} eMentalDefence;
+
+#endif // ENGINE_TYPES_HPP

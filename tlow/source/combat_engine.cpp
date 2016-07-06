@@ -1,9 +1,9 @@
 
 #include "tlow_defs.hpp"
-#include "creature.hpp"
-#include "player.hpp"
-#include "engine_defs.hpp"
-#include "combat_engine.hpp"
+#include "creature/creature.hpp"
+#include "creature/player.hpp"
+#include "engine/engine_types.hpp"
+#include "engine/combat_engine.hpp"
 
 
 // Initialize singleton pointer

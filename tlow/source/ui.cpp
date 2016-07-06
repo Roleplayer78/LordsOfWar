@@ -29,38 +29,38 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ui.hpp"
+#include "ui/ui.hpp"
 
-    
+
 UI::UI(std::shared_ptr<sfg::Desktop> desktop, const sf::Vector2u & render_size) :
     m_render_size(0,0), m_root_box(NULL), m_window1(NULL), m_window2(NULL),
-    m_window3(NULL), m_pstats_notebook(NULL), 
+    m_window3(NULL), m_pstats_notebook(NULL),
     m_action_table(NULL), m_dice_table(NULL), m_desktop(NULL)
 {
     m_render_size.x = render_size.x;
     m_render_size.y = render_size.y;
-    
+
     m_desktop = desktop;
-    
+
     m_root_box = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL, 20.f);
     m_root_box->SetId("RootBox");
-    
+
     m_desktop->LoadThemeFromFile("../data/tlow.ui");
-    
+
     // Create PStats window
     m_window1 = sfg::Window::Create(sfg::Window::Style::TITLEBAR | sfg::Window::Style::BACKGROUND);
     m_window1->SetClass("Window");
     m_window1->SetTitle("Player Stats");
     m_window1->SetPosition(sf::Vector2f(.0f, .0f));
     m_window1->SetRequisition(sf::Vector2f(m_render_size.x * PSTATS_W, m_render_size.y * PSTATS_H));
-    
+
     // Create the Action window
     m_window2 = sfg::Window::Create(sfg::Window::Style::TITLEBAR | sfg::Window::Style::BACKGROUND);
     m_window2->SetClass("Window");
     m_window2->SetTitle("Combat");
     m_window2->SetPosition(sf::Vector2f(m_render_size.x * PSTATS_W, .0f));
     m_window2->SetRequisition(sf::Vector2f(m_render_size.x * ACTION_W, m_render_size.y * ACTION_H));
-    
+
     // Create the Dice roller window
     m_window3 = sfg::Window::Create(sfg::Window::Style::TITLEBAR | sfg::Window::Style::BACKGROUND);
     m_window3->SetClass("Window");
@@ -75,7 +75,7 @@ UI::UI(std::shared_ptr<sfg::Desktop> desktop, const sf::Vector2u & render_size) 
 
 void UI::CreateStatsSection()
 {
-    
+
     m_pstats_notebook = sfg::Notebook::Create();
     m_pstats_notebook->SetClass("tlow");
     m_pstats_notebook->SetId("pstats");
@@ -88,7 +88,7 @@ void UI::CreateStatsSection()
 
     m_pstats_notebook->SetScrollable( true );
     m_pstats_notebook->SetPosition(sf::Vector2f(.0f, .0f));
-    
+
     auto box = sfg::Box::Create(sfg::Box::Orientation::VERTICAL);
     box->Pack(m_pstats_notebook, true, true);
     m_window1->Add(box);
@@ -111,9 +111,9 @@ void UI::CreateDiceSection()
     m_dice_table->SetClass("tlow");
     m_dice_table->SetId("dice");
     m_dice_table->SetPosition(sf::Vector2f(m_render_size.x * DICE_W, m_render_size.y * DICE_H));
-    
+
     auto box = sfg::Box::Create(sfg::Box::Orientation::HORIZONTAL);
     box->Pack(m_dice_table, true, true);
     m_window3->Add(box);
-    
+
 }

@@ -24,25 +24,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "tlow.hpp"
-#include "engine/game_engine_tables.hpp"
-#include "creature/creature.hpp"
+/*
+ * File:   tools.hpp
+ * Author: broken
+ *
+ * Created on 15 June 2016, 11:04
+ */
 
-Creature::Creature(const std::string name) :
-    m_name("Unknown"), m_fatigue(0)
-{
-    m_name = name;
-    UNUSED_VAR(m_fatigue);
+#ifndef TOOLS_HPP
+#define TOOLS_HPP
 
-    m_stats.fill({10,12});
-    m_skills.fill({50,0});
 
-}
-
-std::uint16_t Creature::GetSkill(eSkills skill)
-{
-    // Return the value of requested skill
-    //~ return m_skills[skill].mastery;
-
-    return 0;
-}
+#endif // TOOLS_HPP

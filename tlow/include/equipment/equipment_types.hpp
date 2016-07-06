@@ -24,45 +24,40 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* 
- * File:   main_loop.hpp
+/*
+ * File:   equipment_types.hpp
  * Author: broken
  *
- * Created on 07 June 2016, 22:33
+ * Created on 07 June 2016, 22:32
  */
 
-#ifndef MAIN_LOOP_HPP
-#define MAIN_LOOP_HPP
+#include "tlow.hpp"
+#include "creature/creature_stats.hpp"
 
-#include "ui.hpp"
+#ifndef _EQUIPMENT_TYPES_HPP
+#define _EQUIPMENT_TYPES_HPP
 
-class MainLoop
-{
-public:
-    MainLoop(sf::RenderWindow *render, sfg::SFGUI * sfgui) :
-        m_render(NULL), m_desktop(), m_sfgui(NULL)
-    {
-        m_render = render;
-        m_sfgui = sfgui;
-        m_desktop = std::make_shared<sfg::Desktop>();
-        
-        m_UserInterface = new UI(m_desktop, render->getSize());
-    };
-    
-    // Start the game main loop
-    int Run();
-    
-private:
-    
-    void CreateLayout();
-    
-    sf::RenderWindow * m_render;
-    std::shared_ptr<sfg::Desktop> m_desktop;
-    sfg::SFGUI * m_sfgui;
-    
-    UI *m_UserInterface;
-    
-};
+typedef enum _eArmourType {
+    NO_ARMOUR = 0,
+    CLOTH_ARMOUR,
+    PADDED_ARMOUR,
+    LEATHER_ARMOUR,
+    BOILED_LEATHER_ARMOUR,
+    RING_ARMOUR,
+    CHAINMAIL_ARMOUR,
+    IMPROVED_CHAINMAIL_ARMOUR,
+    SCALE_ARMOUR,
+    LAMELLAR_ARMOUR,
+    PLATE_ARMOUR,
+    UNKNOWN_ARMOUR
+}eArmourType;
 
-#endif /* MAIN_LOOP_HPP */
+typedef struct _sArmour {
+    std::array<eLocation, ALL_LOC> coverage;
+    eArmourType type;
+    std::array<_eDamageType, UNKNOWN_DAMAGE_TYPE> protection;
+    std::uint16_t   weight;
+} sArmour;
 
+
+#endif // _EQUIPMENT_TYPES_HPP

@@ -12,12 +12,13 @@ LD=clang++
 
 SOURCE=./source
 INCLUDE=./include
-MODULE_INCLUDE = -I./include \
-                 -I../SFML/include \
+MODULE_INCLUDE = -I../SFML/include \
                  -I../SFGUI/include \
                  -I../lua/src
 
-CPPFLAGS = $(MODULE_INCLUDE) -Wall -std=c++11 -pedantic -Werror -g -MMD
+GAME_MODULE_INCLUDE = -I./include
+
+CPPFLAGS = $(MODULE_INCLUDE) $(GAME_MODULE_INCLUDE) -Wall -std=c++11 -pedantic -Werror -g -MMD
 #CPPFLAGS += -O2 -pg
 #LINK = -pg
 

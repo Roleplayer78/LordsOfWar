@@ -11,15 +11,15 @@
 // Project includes
 #include "tlow_defs.hpp"
 #include "tlow.hpp"
-#include "main_loop.hpp"
+#include "engine/main_loop.hpp"
 
 
 
 int main (int argc, char *argv[])
 {
     MainWindow window;
-    
-    
+
+
     if (window.Init(SCREEN_WIDTH, SCREEN_HEIGHT, TITLE) != NULL)
     {
         MainLoop ml(window.GetRender(), window.GetGui());
@@ -49,20 +49,20 @@ sf::RenderWindow * MainWindow::Init(const int screen_width, const int screen_hei
         }
 
     }
-    
+
     return m_render;
 }
 
-void MainWindow::CreateWindow()                       
+void MainWindow::CreateWindow()
 {
     // Create SFML's window.
     if ((m_render = new sf::RenderWindow( sf::VideoMode( m_screen_width, m_screen_height ), *m_title,
                                       sf::Style::Titlebar | sf::Style::Close )) != NULL)
     {
-	// We have to do this because we don't use SFML to draw.
-	m_render->resetGLStates();
+    // We have to do this because we don't use SFML to draw.
+    m_render->resetGLStates();
 
-	// Create an SFGUI. This is required before doing anything with SFGUI.
-	m_sfgui = new sfg::SFGUI;
+    // Create an SFGUI. This is required before doing anything with SFGUI.
+    m_sfgui = new sfg::SFGUI;
     }
 }

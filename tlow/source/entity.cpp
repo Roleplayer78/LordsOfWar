@@ -25,10 +25,10 @@
  */
 
 #include "tlow.hpp"
-#include "entity.hpp"
+#include "engine/entity.hpp"
 
 Entity::Entity() :
-	m_type(EntityType::TERRAIN_ENT),
+    m_type(EntityType::TERRAIN_ENT),
     m_canBeDamaged(false),
     m_canBeDestroied(false),
     m_canMove(false),
@@ -40,15 +40,15 @@ Entity::Entity() :
     m_posZ(0),
     m_IconPath(NULL)
 {
-	UNUSED_VAR(m_type)
-	UNUSED_VAR(m_canBeDamaged)
-	UNUSED_VAR(m_canBeDestroied)
-	UNUSED_VAR(m_canMove)
-	UNUSED_VAR(m_isPassable)
-	UNUSED_VAR(m_isVisible)
-	UNUSED_VAR(m_isActive)
-	UNUSED_VAR(m_posX)
-	UNUSED_VAR(m_posY)
-	UNUSED_VAR(m_posZ)
-	UNUSED_VAR(m_IconPath)
+    UNUSED_VAR(m_type)
+    UNUSED_VAR(m_canBeDamaged)
+    UNUSED_VAR(m_canBeDestroied)
+    UNUSED_VAR(m_canMove)
+    UNUSED_VAR(m_isPassable)
+    UNUSED_VAR(m_isVisible)
+    UNUSED_VAR(m_isActive)
+    UNUSED_VAR(m_posX)
+    UNUSED_VAR(m_posY)
+    UNUSED_VAR(m_posZ)
+    UNUSED_VAR(m_IconPath)
 }

@@ -24,12 +24,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "player.hpp"
+#include "creature/player.hpp"
 
 Player::Player(const char * icon_path) :
     Creature("Player"),
     m_icon_path(DATA_PATH"/icon/player.png"),
     m_name(NULL)
 {
-    
+
 }

@@ -34,8 +34,8 @@
 #ifndef COMBAT_ENGINE_HPP
 #define COMBAT_ENGINE_HPP
 
-#include "engine_defs.hpp"
-#include "dice.hpp"
+#include "engine/engine_types.hpp"
+#include "engine/dice.hpp"
 
 
 /**
