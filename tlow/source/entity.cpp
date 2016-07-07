@@ -38,7 +38,8 @@ Entity::Entity() :
     m_posX(0),
     m_posY(0),
     m_posZ(0),
-    m_IconPath(NULL)
+    m_IconPath(NULL),
+    m_weight(0)
 {
     UNUSED_VAR(m_type)
     UNUSED_VAR(m_canBeDamaged)
@@ -51,4 +52,5 @@ Entity::Entity() :
     UNUSED_VAR(m_posY)
     UNUSED_VAR(m_posZ)
     UNUSED_VAR(m_IconPath)
+    UNUSED_VAR(m_weight)
 }

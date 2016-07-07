@@ -40,7 +40,7 @@
 #include "creature/creature_stats.hpp"
 #include "engine/effect.hpp"
 #include "engine/entity.hpp"
-#include "equipment/equipment_types.hpp"
+#include "inventory/equipment_types.hpp"
 
 
 

@@ -96,10 +96,12 @@ class Entity
         bool m_isPassable;
         bool m_isVisible;
         bool m_isActive; // The Entity will act/react to the player
-        unsigned int m_posX;  // 0,0 is the origin
-        unsigned int m_posY; // 0,0 is the origin
+        std::uint16_t m_posX;  // 0,0 is the origin
+        std::uint16_t m_posY; // 0,0 is the origin
         char m_posZ; // negative is below ground. 0 is sea level/ground level
         std::string  m_IconPath; // Path to graphical resource
+        float   m_weight; // In lbs
+
 
 };
 
